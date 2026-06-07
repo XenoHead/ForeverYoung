@@ -50,34 +50,42 @@
     .nav-links a:hover { color: var(--yellow); text-shadow: 0 0 10px rgba(255, 212, 71, 0.4); }
     .nav-links a:hover::after { width: 100%; }
 
-    /* Header */
-    .page-header {
-      padding: 150px 2rem 2rem;
+    /* Header Store Info */
+    .top-store-info {
+      padding: 150px 2rem 4rem;
       text-align: center;
       background: linear-gradient(to bottom, rgba(10, 44, 116, 0.2), transparent);
     }
-    .page-header h1 {
+    .top-store-info h1 {
       font-family: 'Oswald', sans-serif;
       font-size: 4rem;
       color: var(--yellow);
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-    .page-header p.subtitle {
-      color: var(--muted);
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: auto;
+    .top-store-info .info-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      color: var(--cream);
+      font-size: 1.3rem;
+      font-family: 'Outfit', sans-serif;
+    }
+    .top-store-info .info-details span strong {
+      color: var(--yellow);
+      font-weight: 600;
+      letter-spacing: 1px;
     }
 
     /* Layout */
     .contact-container {
-      max-width: 1200px;
+      max-width: 1400px; /* Increased max-width to let TV be bigger without clipping content */
       margin: 0 auto 6rem;
       padding: 2rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.4fr 1fr; /* left side (TV) is bigger */
       gap: 4rem;
       position: relative;
       z-index: 2;
@@ -141,97 +149,153 @@
       box-shadow: 0 10px 20px rgba(255, 212, 71, 0.2);
     }
 
-    /* Right Column (Info & Socials) */
-    .store-info {
-      margin-bottom: 3rem;
-    }
-    .store-info h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
-      color: var(--cream);
-      margin-bottom: 1rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .store-info p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--muted);
-    }
+    /* Right Column (Contact Form Wrapper) */
 
-    /* Broadcast Section (Vanilla CSS version of Tailwind snippet) */
-    .broadcast-section {
+    /* Live Broadcast TV Interface */
+    .ticker-tape-container {
+      grid-column: 1 / -1;
+      background: var(--dark);
+      border: 2px solid var(--blueBright);
+      color: #0f0;
+      font-family: monospace;
+      font-size: 0.9rem;
+      padding: 0.4rem 0;
       margin-top: 2rem;
-      border-top: 2px dashed var(--yellow);
-      padding-top: 1.5rem;
-    }
-    .broadcast-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.875rem;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-      color: var(--blueBright);
+      letter-spacing: 2px;
+      text-shadow: 0 0 5px #0f0;
     }
-    .broadcast-list {
+    .ticker-tape {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 25s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+    /* TV & Controls Layout */
+    .tv-layout-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; /* Align left */
+      gap: 1.5rem;
+    }
+    /* The Physical TV Image Wrapper */
+    .tv-physical-wrapper {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      max-width: 100%; /* Let TV fill the column */
+      aspect-ratio: 1.1 / 1;
+      background-image: url('tv-0.webp');
+      background-size: 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+    }
+    .tv-controls {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+      width: 60px;
     }
-    .broadcast-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border: 4px solid rgba(255,255,255,0.05);
-      background-color: rgba(255,255,255,0.02);
-      padding: 0.75rem 1rem;
-      text-decoration: none;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-      gap: 1rem;
-    }
-    .broadcast-item:hover {
-      transform: translateX(4px);
-      border-color: var(--yellow);
-    }
-    .broadcast-item-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .broadcast-badge {
+    .tv-btn {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+      padding: 0.4rem 0.2rem;
       font-family: 'Oswald', sans-serif;
       font-size: 0.75rem;
-      padding: 0.125rem 0.5rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 600;
-      white-space: nowrap;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-radius: 6px;
     }
-    .badge-tiktok { background-color: #ff0050; color: #fff; }
-    .badge-tw { background-color: #1DA1F2; color: #fff; }
-    .badge-fb { background-color: var(--yellow); color: var(--dark); }
-
-    .broadcast-text {
-      font-size: 0.875rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.025em;
-      color: var(--cream);
+    .tv-btn.active, .tv-btn:hover {
+      background: var(--yellow);
+      color: var(--dark);
+      border-color: var(--yellow);
+      box-shadow: 0 0 10px rgba(255,212,71,0.3);
+      transform: scale(1.05);
     }
-    .broadcast-action {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      transition: color 0.3s ease;
-      white-space: nowrap;
+    @keyframes occasionalFlicker {
+      0% { opacity: 1; filter: brightness(1); }
+      94% { opacity: 1; filter: brightness(1); }
+      95% { opacity: 0.7; filter: brightness(1.3); }
+      96% { opacity: 1; filter: brightness(1); }
+      97% { opacity: 0.9; filter: brightness(0.8); }
+      98% { opacity: 1; filter: brightness(1); }
+      100% { opacity: 1; filter: brightness(1); }
     }
-    .broadcast-item:hover .broadcast-action {
-      color: var(--yellow);
+    .crt-container {
+      position: absolute;
+      top: 14%;
+      left: 12%;
+      width: 75%;
+      height: 62%;
+      background: #000;
+      border-radius: 5%;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+      animation: occasionalFlicker 6s infinite;
+    }
+    .crt-screen {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      position: relative;
+    }
+    /* Feed containers - Opacity fix for Twitter widget rendering */
+    .feed-panel {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      opacity: 0;
+      pointer-events: none;
+      background: #fff;
+      transition: opacity 0.3s ease;
+      display: flex;
+      justify-content: center;
+    }
+    .feed-panel.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 5;
+    }
+    .feed-panel.dark-feed {
+      background: #000;
+    }
+    /* The TV Scanlines & Static Overlay */
+    .crt-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      background-size: 100% 4px, 6px 100%;
+      z-index: 10;
+      pointer-events: none; /* Let clicks pass through to the embeds */
+    }
+    .crt-static {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
+      z-index: 11;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      animation: staticFlicker 0.1s infinite;
+    }
+    @keyframes staticFlicker {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(2px, -2px); }
     }
     
     @media(max-width:900px) {
+      .tv-layout-wrapper { flex-direction: column; margin-left: 0; }
+      .tv-controls { flex-direction: row; width: 100%; }
+      .tv-physical-wrapper { min-width: 100%; }
       .nav-links { display: none; }
       .page-header h1 { font-size: 2.5rem; }
       .contact-container { grid-template-columns: 1fr; gap: 3rem; }
@@ -248,7 +312,7 @@
       </div>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="#">Inventory</a>
+        <a href="buying-hours.html">Buying Hours</a>
         <a href="#">Visit</a>
         <a href="about.html">About</a>
         <a href="contact.html" style="color: var(--yellow);">Contact</a>
@@ -256,15 +320,50 @@
     </div>
   </nav>
 
-  <header class="page-header">
-    <h1>Get In Touch</h1>
-    <p class="subtitle">Looking for a specific record? Want to sell your collection? Send a transmission.</p>
+  <header class="top-store-info">
+    <h1>Forever Young Records</h1>
+    <div class="info-details">
+      <span>2955 S State Hwy 161, Grand Prairie, TX 75052</span>
+      <span><strong>Phone:</strong> (972) 260-9899</span>
+      <span><strong>Hours:</strong> Open 7 Days A Week</span>
+    </div>
   </header>
 
   <main class="contact-container">
     
-    <!-- Contact Form -->
+    <!-- Contact Left (TV Interface) -->
     <div class="contact-left">
+      <!-- Live Community TV Interface -->
+      <div class="tv-layout-wrapper">
+        <div class="tv-physical-wrapper">
+          <div class="crt-container">
+            <div class="crt-overlay"></div>
+            <div class="crt-static"></div>
+            
+            <div class="crt-screen">
+              <!-- Channel 1: TikTok -->
+              <div id="feed-tk" class="feed-panel dark-feed active">
+                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@foreveryoungrecordstx" data-unique-id="foreveryoungrecordstx" data-embed-type="creator" style="max-width: 100%; min-width: 100%; height: 100%; margin: 0;"> <section> <a target="_blank" href="https://www.tiktok.com/@foreveryoungrecordstx?refer=creator_embed">@foreveryoungrecordstx</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+              </div>
+
+              <!-- Channel 2: Facebook -->
+              <div id="feed-fb" class="feed-panel">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FForeverYoungRecords&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId" style="border:none;overflow:hidden;width:100%;height:100%;" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tv-controls">
+          <button class="tv-btn active" onclick="switchChannel('tk')">CH 1<br>TK</button>
+          <button class="tv-btn" onclick="switchChannel('fb')">CH 2<br>FB</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-right">
+      <!-- Contact Form -->
       <form class="contact-form" action="#" method="POST">
         <div class="form-group">
           <label for="name">Name</label>
@@ -281,52 +380,25 @@
         <button type="submit" class="submit-btn">Transmit Message</button>
       </form>
     </div>
-
-    <!-- Store Info & Social Broadcasts -->
-    <div class="contact-right">
-      <div class="store-info">
-        <h3>Forever Young Records</h3>
-        <p>
-          2955 S State Hwy 161<br>
-          Grand Prairie, TX 75052<br><br>
-          <strong>Phone:</strong> (972) 260-9899<br>
-          <strong>Hours:</strong> Open 7 Days A Week
-        </p>
+    
+    <!-- Ticker Tape moved to bottom spanning both columns -->
+    <div class="ticker-tape-container">
+      <div class="ticker-tape">
+        *** 📡 TRANSMISSION INCOMING *** FRESH VINYL RESTOCK JUST HIT THE FLOOR *** OPEN 7 DAYS A WEEK IN GRAND PRAIRIE *** TUNE IN FOR LATEST ARRIVALS *** WE BUY COLLECTIONS ***
       </div>
-
-      <!-- Live Community Broadcasts UI (Translated from Tailwind snippet) -->
-      <div class="broadcast-section">
-        <p class="broadcast-title">📡 LIVE COMMUNITY BROADCASTS</p>
-        
-        <div class="broadcast-list">
-          <a href="https://www.tiktok.com/@foreveryoungrecordstx" target="_blank" class="broadcast-item">
-            <div class="broadcast-item-left">
-              <span class="broadcast-badge badge-tiktok">LIVE REELS</span>
-              <span class="broadcast-text">TikTok: @foreveryoungrecordstx</span>
-            </div>
-            <span class="broadcast-action">⚡ [WATCH UNBOXINGS] →</span>
-          </a>
-
-          <a href="https://x.com/ForeverYoungTX" target="_blank" class="broadcast-item">
-            <div class="broadcast-item-left">
-              <span class="broadcast-badge badge-tw">HOT TAKES</span>
-              <span class="broadcast-text">Twitter: @ForeverYoungTX</span>
-            </div>
-            <span class="broadcast-action">🐦 [READ THREADS] →</span>
-          </a>
-
-          <a href="https://www.facebook.com/ForeverYoungRecords" target="_blank" class="broadcast-item">
-            <div class="broadcast-item-left">
-              <span class="broadcast-badge badge-fb">BULLETIN</span>
-              <span class="broadcast-text">Facebook: /ForeverYoungRecords</span>
-            </div>
-            <span class="broadcast-action">📢 [STORE EVENTS] →</span>
-          </a>
-        </div>
-      </div>
-      
     </div>
   </main>
 
+  <script>
+    function switchChannel(channel) {
+      // Update Buttons
+      document.querySelectorAll('.tv-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      // Update Feeds
+      document.querySelectorAll('.feed-panel').forEach(panel => panel.classList.remove('active'));
+      document.getElementById('feed-' + channel).classList.add('active');
+    }
+  </script>
 </body>
 </html>

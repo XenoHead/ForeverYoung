@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Forever Young Records</title>
+  <title>Buying Hours | Forever Young Records</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -50,14 +50,14 @@
     .nav-links a:hover { color: var(--yellow); text-shadow: 0 0 10px rgba(255, 212, 71, 0.4); }
     .nav-links a:hover::after { width: 100%; }
 
-    /* Vinyl Sidebar */
+    /* Vinyl Sidebar - Reusing pancake image! */
     .vinyl-sidebar {
       position: fixed;
       top: 0;
       right: 0;
       width: 280px;
       height: 100vh;
-      background-image: url('vinyl-row.JPG');
+      background-image: url('vinyl-pancake.jpg');
       background-size: cover;
       background-position: right center;
       opacity: 0.85;
@@ -67,9 +67,9 @@
       mask-image: linear-gradient(to right, transparent 0%, black 75%);
     }
 
-    /* About Specific Styles */
+    /* About/Buying Specific Styles */
     .about-header {
-      padding: 150px 2rem 2rem;
+      padding: 150px 2rem 4rem;
       text-align: center;
       background: linear-gradient(to bottom, rgba(10, 44, 116, 0.2), transparent);
     }
@@ -89,17 +89,11 @@
     }
 
     .about-content {
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto 6rem;
       padding: 0 2rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-    }
-
-    .text-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 2rem;
     }
 
@@ -109,6 +103,15 @@
       border-radius: 12px;
       padding: 2rem;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .about-block h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .about-block p {
@@ -121,17 +124,13 @@
       margin-bottom: 0;
     }
 
-    .about-image {
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-    }
     .about-image img {
       width: 100%;
       height: 250px;
       object-fit: cover;
       object-position: center 30%;
       filter: contrast(1.1);
+      border-radius: 12px;
     }
     
     @media(max-width:900px) {
@@ -139,7 +138,6 @@
       .nav-links { display: none; }
       .about-header h1 { font-size: 2.5rem; }
       .about-block { padding: 2rem; }
-      .text-columns { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -152,36 +150,49 @@
       </div>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="buying-hours.html">Buying Hours</a>
+        <a href="buying-hours.html" style="color: var(--yellow);">Buying Hours</a>
         <a href="#">Visit</a>
-        <a href="about.html" style="color: var(--yellow);">About</a>
+        <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
     </div>
   </nav>
 
   <header class="about-header">
-    <h1>Our Story</h1>
-    <p class="subtitle">A physical stronghold for music culture since 1984.</p>
+    <h1>Buying Hours</h1>
+    <p class="subtitle">Turn your collection into cash. We buy vinyl, CDs, cassettes, and memorabilia.</p>
   </header>
 
   <main class="about-content">
-    <div class="text-columns">
-      <div class="about-block">
-        <p><strong>Forever Young Records</strong> has been in business since 1984 in the Dallas / Ft. Worth metroplex. We are a record store that is family owned and operated. Forever Young strives to have a large selection of music at reasonable costs.</p>
-        <p>Although our store location has moved several times in the past 24 years, we are now settled in a large 11,000 square foot building located in Grand Prairie Texas, just 30 minutes west of downtown Dallas. As one of the few independent record stores still in business in the DFW area, Forever Young has managed to expand not only the size of the store, but the store inventory as well. We carry your hot new releases as well as classic Vinyl from the age of the 30's and 40's!</p>
-      </div>
+    <div class="about-block">
+      <h2>When To Visit</h2>
+      <p>Our buyers are actively assessing collections during the following hours:</p>
+      <p><strong>Mon, Wed, Friday:</strong> 10:00 AM - 2:00 PM</p>
+      <p style="color: var(--yellow); font-weight: 600; font-size: 1.15rem; margin-top: 0.5rem; letter-spacing: 1px;">Ask for Dave!</p>
+      <p><em>Got a massive collection (1,000+ items)?</em> We can schedule house calls! Please <a href="contact.html" style="color: var(--yellow);">contact us</a> to arrange a private appointment with our lead buyer.</p>
+    </div>
 
-      <div class="about-block">
-        <p>With over <strong>250,000</strong> New & Used; CDS, LPs, Cassettes, 45s, Music posters, Reel to Reel Tapes, DVDs, and many original unique music memorabilia. We have in stock some of the coolest and rarest vinyl records that were ever made.</p>
-        <p>We carry the latest CD releases from Punk, Pop, Metal, Classic Rock, Jazz, Country, Reggae, African, Latino, Soundtracks, Easy Listening, Techno, and more (not including most foreign languages, classical, or karaoke).</p>
-        <p>Our display cabinets are filled with original music memorabilia from the 1950's, 1960’s and 1970’s Pop Culture era.</p>
-        <p>We have a large selection of specialty items like: RIAA Gold & Platinum Record Awards, Limited Edition LP & CD Box Sets, a selection of Beatle Mania memorabilia, Posters, Promotional Items, magazines and many music books such as Record Collectors Guide and special limited edition collectors books.</p>
-      </div>
+    <div class="about-block">
+      <h2>We Buy Music</h2>
+      <p>Are you looking to sell your collection? Forever Young Records is always looking to purchase high-quality music and memorabilia. Our professional buyers are on staff during select days, ready to appraise your collection and offer you cash or store credit.</p>
     </div>
 
     <div class="about-image">
-      <img src="dancing-fools.jpg" alt="Forever Young Records Art">
+      <img src="stack-2-vinyl.jpg" alt="Record Stack">
+    </div>
+
+    <div class="about-block">
+      <h2>What We're Looking For</h2>
+      <p>We purchase a massive variety of formats and genres, including:</p>
+      <ul style="margin-left: 2rem; margin-bottom: 1rem; color: var(--muted); font-size: 1.05rem; line-height: 1.6;">
+        <li>Vinyl Records (LPs & 45s)</li>
+        <li>CDs & Cassettes</li>
+        <li>Reel to Reel Tapes</li>
+        <li>Turntables and Audio Equipment</li>
+        <li>Vintage Music Posters and T-Shirts</li>
+        <li>RIAA Gold/Platinum Records and Autographs</li>
+      </ul>
+      <p>We do not typically buy most foreign language albums, classical music, or karaoke.</p>
     </div>
   </main>
 

@@ -367,56 +367,7 @@
     }
 
 
-    /* =========================
-    GALLERY SECTION
-    ========================= */
-    .gallery-section {
-      padding: 6rem 2rem;
-      background: #050A14;
-      position: relative;
-      z-index: 5;
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .gallery-inner {
-      max-width: 1400px;
-      margin: auto;
-    }
-    .gallery-inner h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 3rem;
-      color: var(--yellow);
-      text-align: center;
-      margin-bottom: 3rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .gallery-item {
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      position: relative;
-      aspect-ratio: 1 / 1;
-      background: #08111F;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease, filter 0.4s ease;
-      filter: contrast(1.1) brightness(0.9);
-    }
-    .gallery-item:hover img {
-      transform: scale(1.05);
-      filter: contrast(1.1) brightness(1.1);
-    }
+
 
     /* =========================
     MOBILE
@@ -442,8 +393,7 @@
       </div>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="#">Inventory</a>
-        <a href="#">Visit</a>
+        <a href="buying-hours.html">Buying Hours</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
@@ -466,7 +416,7 @@
         <a href="#" class="button">Visit The Store</a>
       </div>
       <div class="feature-nav">
-        <a href="#" class="feature-link">BUYING HOURS</a>
+        <a href="buying-hours.html" class="feature-link">BUYING HOURS</a>
         <a href="#" class="feature-link">AISLE GPS</a>
         <a href="#" class="feature-link">CRATE DIGGING</a>
         <a href="#" class="feature-link">MUSIC SEARCH</a>
@@ -498,17 +448,6 @@
     </div>
   </section>
 
-  <section class="gallery-section">
-    <div class="gallery-inner">
-      <h2>The Analog Experience</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="turn-table.png" alt="Turntable"></div>
-        <div class="gallery-item"><img src="stack-2-vinyl.jpg" alt="Vinyl Stack"></div>
-        <div class="gallery-item"><img src="record-row.jpg" alt="Record Row"></div>
-        <div class="gallery-item" style="background: rgba(255,255,255,0.03);"><img src="cd-2.png" alt="CDs" style="object-fit: contain; padding: 2.5rem; filter: none;"></div>
-      </div>
-    </div>
-  </section>
 
   <script>
     const buttons = document.querySelectorAll('.button, .feature-link');
