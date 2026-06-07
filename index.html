@@ -1,11 +1,5 @@
-<!-- =========================================
-FOREVER YOUNG RECORDS
-HOMEPAGE CONCEPT
-index.html
-========================================= -->
-
+html
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -23,10 +17,6 @@ index.html
     rel="stylesheet">
 
   <style>
-    /* =========================================
-RESET
-========================================= */
-
     * {
       margin: 0;
       padding: 0;
@@ -38,34 +28,33 @@ RESET
     }
 
     body {
-      background: #071120;
-      color: #FFF7DA;
+      background: #08111F;
+      color: #FFF8DF;
       overflow-x: hidden;
       font-family: 'Outfit', sans-serif;
     }
 
-    /* =========================================
+    /* =========================
 COLORS
-========================================= */
+========================= */
 
     :root {
 
       --blue: #0A2C74;
-      --blueBright: #2F6DFF;
+      --blueBright: #2C6CFF;
 
-      --yellow: #FFD33D;
+      --yellow: #FFD447;
 
-      --cream: #FFF7DA;
+      --cream: #FFF8DF;
 
-      --dark: #071120;
+      --dark: #08111F;
 
-      --muted: #B8C0D9;
-
+      --muted: #B6C0D7;
     }
 
-    /* =========================================
-BACKGROUND GRAIN
-========================================= */
+    /* =========================
+FILM GRAIN
+========================= */
 
     body::before {
 
@@ -77,16 +66,41 @@ BACKGROUND GRAIN
 
       background-image: url("https://grainy-gradients.vercel.app/noise.svg");
 
-      opacity: 0.12;
+      opacity: 0.08;
 
       pointer-events: none;
 
       z-index: 999;
+
+      animation: grainMove 10s steps(2) infinite;
     }
 
-    /* =========================================
-NAV
-========================================= */
+    @keyframes grainMove {
+
+      0% {
+        transform: translate(0px, 0px);
+      }
+
+      25% {
+        transform: translate(-2px, 1px);
+      }
+
+      50% {
+        transform: translate(2px, -1px);
+      }
+
+      75% {
+        transform: translate(-1px, 2px);
+      }
+
+      100% {
+        transform: translate(0px, 0px);
+      }
+    }
+
+    /* =========================
+NAVIGATION
+========================= */
 
     nav {
 
@@ -99,9 +113,9 @@ NAV
 
       z-index: 100;
 
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
 
-      background: rgba(7, 17, 32, 0.72);
+      background: rgba(8, 17, 31, 0.72);
 
       border-bottom:
         1px solid rgba(255, 255, 255, 0.06);
@@ -113,7 +127,7 @@ NAV
 
       margin: auto;
 
-      padding: 1.2rem 2rem;
+      padding: 1.1rem 2rem;
 
       display: flex;
 
@@ -122,19 +136,11 @@ NAV
       align-items: center;
     }
 
-    .logo {
+    .logo img {
 
-      font-family: 'Oswald', sans-serif;
+      height: 58px;
 
-      font-size: 1.8rem;
-
-      letter-spacing: 2px;
-
-      color: var(--yellow);
-    }
-
-    .logo span {
-      color: white;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -146,9 +152,9 @@ NAV
 
     .nav-links a {
 
-      text-decoration: none;
-
       color: var(--cream);
+
+      text-decoration: none;
 
       font-size: 0.95rem;
 
@@ -162,9 +168,9 @@ NAV
       color: var(--yellow);
     }
 
-    /* =========================================
+    /* =========================
 HERO
-========================================= */
+========================= */
 
     .hero {
 
@@ -174,16 +180,16 @@ HERO
 
       display: flex;
 
-      justify-content: center;
-
       align-items: center;
+
+      justify-content: center;
 
       overflow: hidden;
     }
 
-    /* =========================================
+    /* =========================
 BACKGROUND IMAGE
-========================================= */
+========================= */
 
     .hero-image {
 
@@ -192,16 +198,15 @@ BACKGROUND IMAGE
       inset: 0;
 
       background-image:
-        linear-gradient(rgba(7, 17, 32, 0.58),
-          rgba(7, 17, 32, 0.82)),
-
-        url('jukebox-entrance.jpg');
+        linear-gradient(rgba(8, 17, 31, 0.55),
+          rgba(8, 17, 31, 0.82)),
+        url('jukebox-hero.jpg');
 
       background-size: cover;
 
       background-position: center;
 
-      transform: scale(1.04);
+      transform: scale(1.05);
 
       animation: slowZoom 18s ease-in-out infinite alternate;
     }
@@ -209,18 +214,17 @@ BACKGROUND IMAGE
     @keyframes slowZoom {
 
       from {
-        transform: scale(1.04);
+        transform: scale(1.05);
       }
 
       to {
         transform: scale(1.1);
       }
-
     }
 
-    /* =========================================
+    /* =========================
 NEON GLOW
-========================================= */
+========================= */
 
     .hero::after {
 
@@ -235,17 +239,17 @@ NEON GLOW
 
       background:
         radial-gradient(circle,
-          rgba(47, 109, 255, 0.16),
+          rgba(44, 108, 255, 0.18),
           transparent 70%);
 
-      filter: blur(60px);
+      filter: blur(80px);
 
       z-index: 1;
     }
 
-    /* =========================================
+    /* =========================
 CONTENT
-========================================= */
+========================= */
 
     .hero-content {
 
@@ -253,54 +257,49 @@ CONTENT
 
       z-index: 2;
 
-      text-align: center;
-
       max-width: 900px;
+
+      text-align: center;
 
       padding: 2rem;
 
       animation: fadeUp 1.2s ease forwards;
     }
 
-    .hero-content h1 {
+    .hero-logo {
 
-      font-family: 'Oswald', sans-serif;
-
-      font-size: clamp(4rem, 9vw, 8rem);
-
-      line-height: 0.92;
-
-      letter-spacing: 3px;
-
-      margin-bottom: 1.5rem;
-
-      text-transform: uppercase;
-
-      text-shadow:
-        0 0 30px rgba(0, 0, 0, 0.5);
+      margin-bottom: 2rem;
     }
 
-    .hero-content h1 span {
+    .hero-logo img {
 
-      color: var(--yellow);
+      width: min(520px, 90vw);
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(0 0 18px rgba(255, 212, 71, 0.15));
     }
 
     .hero-content p {
 
-      font-size: 1.2rem;
-
       color: var(--cream);
+
+      font-size: 1.15rem;
 
       line-height: 1.8;
 
-      max-width: 700px;
+      max-width: 720px;
 
       margin: auto auto 2.5rem;
+
+      text-shadow:
+        0 0 20px rgba(0, 0, 0, 0.45);
     }
 
-    /* =========================================
+    /* =========================
 BUTTONS
-========================================= */
+========================= */
 
     .hero-buttons {
 
@@ -311,6 +310,8 @@ BUTTONS
       gap: 1rem;
 
       flex-wrap: wrap;
+
+      margin-bottom: 1.5rem;
     }
 
     .button {
@@ -318,24 +319,24 @@ BUTTONS
       padding:
         1rem 1.8rem;
 
+      border-radius: 3px;
+
       text-decoration: none;
 
       border:
-        2px solid rgba(255, 255, 255, 0.15);
+        2px solid rgba(255, 255, 255, 0.14);
 
       color: white;
 
-      transition: 0.35s ease;
+      transition: 0.3s ease;
 
       letter-spacing: 1px;
-
-      font-weight: 500;
 
       position: relative;
 
       overflow: hidden;
 
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(6px);
     }
 
     .button.primary {
@@ -347,174 +348,188 @@ BUTTONS
       border-color: var(--yellow);
 
       box-shadow:
-        0 0 30px rgba(255, 211, 61, 0.25);
+        0 0 25px rgba(255, 212, 71, 0.22);
     }
 
     .button:hover {
 
-      transform:
-        translateY(-3px);
+      transform: translateY(-2px);
 
       box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.3);
+        0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
-    /* =========================================
-INFO STRIP
-========================================= */
+    /* =========================
+FEATURE NAV
+========================= */
 
-    .info-strip {
+    .feature-nav {
+
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 0.8rem;
+
+      margin-top: 1.2rem;
+    }
+
+    .feature-link {
+
+      text-decoration: none;
+
+      color: var(--cream);
+
+      padding:
+        0.75rem 1rem;
+
+      border:
+        1px solid rgba(255, 255, 255, 0.1);
+
+      background:
+        rgba(255, 255, 255, 0.03);
+
+      font-size: 0.88rem;
+
+      letter-spacing: 1px;
+
+      transition: 0.3s ease;
+    }
+
+    .feature-link:hover {
+
+      border-color:
+        rgba(255, 212, 71, 0.35);
+
+      background:
+        rgba(255, 212, 71, 0.08);
+
+      color: var(--yellow);
+    }
+
+    /* =========================
+BOTTOM BAR
+========================= */
+
+    .bottom-bar {
+
+      position: absolute;
+
+      bottom: 0;
+
+      width: 100%;
+
+      z-index: 3;
 
       background:
         linear-gradient(90deg,
-          var(--blue),
-          #15398A);
+          rgba(10, 44, 116, 0.92),
+          rgba(17, 58, 145, 0.92));
 
       border-top:
         1px solid rgba(255, 255, 255, 0.06);
-
-      border-bottom:
-        1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .info-inner {
+    .bottom-inner {
 
       max-width: 1400px;
 
       margin: auto;
 
-      padding: 2rem;
+      padding: 1rem 2rem;
 
-      display: grid;
+      display: flex;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+      justify-content: space-between;
 
       gap: 2rem;
 
+      flex-wrap: wrap;
+
       text-align: center;
     }
 
-    .info-item h3 {
+    .bottom-item {
 
-      font-family: 'Oswald', sans-serif;
+      flex: 1;
 
-      font-size: 2rem;
+      min-width: 180px;
+    }
+
+    .bottom-item h3 {
 
       color: var(--yellow);
 
-      margin-bottom: 0.6rem;
-    }
-
-    .info-item p {
-
-      color: #D7DDF0;
-
-      line-height: 1.6;
-    }
-
-    /* =========================================
-STORY SECTION
-========================================= */
-
-    .story {
-
-      padding: 7rem 2rem;
-
-      background: #091427;
-    }
-
-    .story-inner {
-
-      max-width: 1200px;
-
-      margin: auto;
-
-      display: grid;
-
-      grid-template-columns: 1.2fr 1fr;
-
-      gap: 4rem;
-
-      align-items: center;
-    }
-
-    .story-text h2 {
-
       font-family: 'Oswald', sans-serif;
 
-      font-size: clamp(3rem, 6vw, 5rem);
+      font-size: 1.4rem;
 
-      line-height: 0.95;
-
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.3rem;
     }
 
-    .story-text p {
+    .bottom-item p {
 
-      color: var(--muted);
+      color: #D9E1F4;
 
-      line-height: 1.9;
+      font-size: 0.88rem;
 
-      margin-bottom: 1.5rem;
+      line-height: 1.5;
     }
 
-    .story-image {
+    /* =========================
+NEON FLICKER
+========================= */
 
-      min-height: 500px;
+    .neon {
 
-      background-image: url('store-interior.jpg');
-
-      background-size: cover;
-
-      background-position: center;
-
-      border:
-        1px solid rgba(255, 255, 255, 0.08);
-
-      box-shadow:
-        0 0 50px rgba(0, 0, 0, 0.4);
+      animation: flicker 5s infinite;
     }
 
-    /* =========================================
-FOOTER
-========================================= */
+    @keyframes flicker {
 
-    footer {
+      0%,
+      18%,
+      22%,
+      25%,
+      53%,
+      57%,
+      100% {
 
-      padding: 3rem 2rem;
+        opacity: 1;
 
-      text-align: center;
+        filter:
+          drop-shadow(0 0 6px rgba(255, 212, 71, 0.25)) drop-shadow(0 0 20px rgba(255, 212, 71, 0.12));
+      }
 
-      background: #050B16;
-
-      color: #9FA9C4;
-
-      border-top:
-        1px solid rgba(255, 255, 255, 0.05);
+      20%,
+      24%,
+      55% {
+        opacity: 0.92;
+      }
     }
 
-    /* =========================================
+    /* =========================
 ANIMATION
-========================================= */
+========================= */
 
     @keyframes fadeUp {
 
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
       }
 
       to {
         opacity: 1;
         transform: translateY(0px);
       }
-
     }
 
-    /* =========================================
+    /* =========================
 MOBILE
-========================================= */
+========================= */
 
     @media(max-width:900px) {
 
@@ -522,18 +537,22 @@ MOBILE
         display: none;
       }
 
-      .info-inner {
-        grid-template-columns: 1fr;
+      .hero {
+
+        min-height: auto;
+
+        padding-top: 120px;
+
+        padding-bottom: 140px;
       }
 
-      .story-inner {
-        grid-template-columns: 1fr;
+      .hero-content p {
+        font-size: 1rem;
       }
 
-      .hero-content h1 {
-        font-size: 4rem;
+      .bottom-inner {
+        justify-content: center;
       }
-
     }
   </style>
 
@@ -541,51 +560,41 @@ MOBILE
 
 <body>
 
-  <!-- =========================================
-NAVIGATION
-========================================= -->
-
   <nav>
 
-    ```
     <div class="nav-inner">
 
       <div class="logo">
-        FOREVER <span>YOUNG</span>
+
+        <img src="fyr-logo.png" alt="Forever Young Records">
+
       </div>
 
       <div class="nav-links">
 
         <a href="#">Home</a>
         <a href="#">Inventory</a>
-        <a href="#">Memorabilia</a>
         <a href="#">Visit</a>
+        <a href="#">About</a>
         <a href="#">Contact</a>
 
       </div>
 
     </div>
-    ```
 
   </nav>
 
-  <!-- =========================================
-HERO
-========================================= -->
-
   <section class="hero">
 
-    ```
     <div class="hero-image"></div>
 
     <div class="hero-content">
 
-      <h1>
+      <div class="hero-logo neon">
 
-        FOREVER
-        <span>YOUNG</span>
+        <img src="fyr-logo.png" alt="Forever Young Records">
 
-      </h1>
+      </div>
 
       <p>
 
@@ -607,133 +616,81 @@ HERO
 
       </div>
 
-    </div>
-    ```
+      <div class="feature-nav">
 
-  </section>
+        <a href="#" class="feature-link">
+          BUYING HOURS
+        </a>
 
-  <!-- =========================================
-INFO STRIP
-========================================= -->
+        <a href="#" class="feature-link">
+          AISLE GPS
+        </a>
 
-  <section class="info-strip">
+        <a href="#" class="feature-link">
+          CRATE DIGGING
+        </a>
 
-    ```
-    <div class="info-inner">
+        <a href="#" class="feature-link">
+          MUSIC SEARCH
+        </a>
 
-      <div class="info-item">
-
-        <h3>250K+</h3>
-
-        <p>
-          Vinyl records, CDs,
-          tapes, collectibles,
-          and music artifacts.
-        </p>
-
-      </div>
-
-      <div class="info-item">
-
-        <h3>Since 1984</h3>
-
-        <p>
-          One of Texas’
-          most iconic independent
-          music destinations.
-        </p>
-
-      </div>
-
-      <div class="info-item">
-
-        <h3>Collectors</h3>
-
-        <p>
-          Rare finds,
-          memorabilia,
-          and deep catalog discoveries.
-        </p>
-
-      </div>
-
-    </div>
-    ```
-
-  </section>
-
-  <!-- =========================================
-STORY
-========================================= -->
-
-  <section class="story">
-
-    ```
-    <div class="story-inner">
-
-      <div class="story-text">
-
-        <h2>
-
-          More Than
-          A Record Store
-
-        </h2>
-
-        <p>
-
-          Forever Young Records is a living archive
-          of music history —
-          a destination for collectors,
-          enthusiasts,
-          and generations of music lovers.
-
-        </p>
-
-        <p>
-
-          From rare vinyl and memorabilia
-          to iconic artifacts spanning decades
-          of American sound,
-          the store has become a landmark
-          for those searching for something timeless.
-
-        </p>
-
-        <a href="#" class="button primary">
-          Learn More
+        <a href="#" class="feature-link">
+          ABOUT
         </a>
 
       </div>
 
-      <div class="story-image"></div>
+    </div>
+
+    <div class="bottom-bar">
+
+      <div class="bottom-inner">
+
+        <div class="bottom-item">
+
+          <h3>250K+</h3>
+
+          <p>
+            Vinyl, tapes, CDs,
+            memorabilia & collectibles
+          </p>
+
+        </div>
+
+        <div class="bottom-item">
+
+          <h3>Since 1984</h3>
+
+          <p>
+            One of Texas’
+            legendary independent
+            music destinations
+          </p>
+
+        </div>
+
+        <div class="bottom-item">
+
+          <h3>Collectors</h3>
+
+          <p>
+            Rare finds,
+            deep catalog discoveries,
+            and music history
+          </p>
+
+        </div>
+
+      </div>
 
     </div>
-    ```
 
   </section>
 
-  <!-- =========================================
-FOOTER
-========================================= -->
-
-  <footer>
-
-    ```
-    Forever Young Records —
-    Music Lives Forever.
-    ```
-
-  </footer>
-
   <script>
 
-    /* =========================================
-    BUTTON LIGHT TRACKING
-    ========================================= */
-
     const buttons =
-      document.querySelectorAll('.button');
+      document.querySelectorAll('.button, .feature-link');
 
     buttons.forEach(button => {
 
@@ -751,12 +708,12 @@ FOOTER
         button.style.background =
           `radial-gradient(circle at ${x}px ${y}px,
         rgba(255,255,255,0.18),
-        rgba(255,255,255,0) 55%)`;
+        rgba(255,255,255,0) 60%)`;
 
         if (button.classList.contains('primary')) {
 
           button.style.backgroundColor =
-            '#FFD33D';
+            '#FFD447';
         }
 
       });
@@ -766,13 +723,12 @@ FOOTER
         if (button.classList.contains('primary')) {
 
           button.style.background =
-            '#FFD33D';
+            '#FFD447';
 
         } else {
 
           button.style.background =
-            'transparent';
-
+            'rgba(255,255,255,0.03)';
         }
 
       });
