@@ -1,18 +1,31 @@
+<!-- =========================================
+FOREVER YOUNG RECORDS
+HOMEPAGE CONCEPT
+index.html
+========================================= -->
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forever Young Records</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
 
-    :root {
-      --bg-color: #050505;
-      --accent-color: #f5a623;
-      --text-main: #ffffff;
-      --text-muted: #888888;
-    }
+  <title>Forever Young Records</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* =========================================
+RESET
+========================================= */
 
     * {
       margin: 0;
@@ -20,248 +33,754 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Outfit', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: #071120;
+      color: #FFF7DA;
       overflow-x: hidden;
-      background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
+      font-family: 'Outfit', sans-serif;
     }
 
-    /* Ambient background glow */
-    .ambient-glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(circle, rgba(245, 166, 35, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-      z-index: 0;
+    /* =========================================
+COLORS
+========================================= */
+
+    :root {
+
+      --blue: #0A2C74;
+      --blueBright: #2F6DFF;
+
+      --yellow: #FFD33D;
+
+      --cream: #FFF7DA;
+
+      --dark: #071120;
+
+      --muted: #B8C0D9;
+
+    }
+
+    /* =========================================
+BACKGROUND GRAIN
+========================================= */
+
+    body::before {
+
+      content: "";
+
+      position: fixed;
+
+      inset: 0;
+
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+
+      opacity: 0.12;
+
       pointer-events: none;
-      filter: blur(50px);
-      animation: pulseGlow 8s infinite alternate ease-in-out;
+
+      z-index: 999;
     }
 
-    @keyframes pulseGlow {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-      100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-    }
+    /* =========================================
+NAV
+========================================= */
 
-    .top-banner {
-      width: 100%;
-      height: 300px;
-      margin-bottom: 4rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      animation: slideDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      z-index: 10;
-      border-bottom: 2px solid rgba(245, 166, 35, 0.2);
-    }
+    nav {
 
-    .top-banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 65%; /* Adjusted framing downwards */
-      filter: contrast(1.1) brightness(0.9);
-    }
+      position: fixed;
 
-    /* Add a subtle gradient overlay so it blends into the page */
-    .top-banner::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
+
       width: 100%;
-      height: 40%;
-      background: linear-gradient(to top, var(--bg-color) 0%, transparent 100%);
-      pointer-events: none;
+
+      z-index: 100;
+
+      backdrop-filter: blur(14px);
+
+      background: rgba(7, 17, 32, 0.72);
+
+      border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .centerpiece-container {
+    .nav-inner {
+
+      max-width: 1400px;
+
+      margin: auto;
+
+      padding: 1.2rem 2rem;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+    }
+
+    .logo {
+
+      font-family: 'Oswald', sans-serif;
+
+      font-size: 1.8rem;
+
+      letter-spacing: 2px;
+
+      color: var(--yellow);
+    }
+
+    .logo span {
+      color: white;
+    }
+
+    .nav-links {
+
+      display: flex;
+
+      gap: 2rem;
+    }
+
+    .nav-links a {
+
+      text-decoration: none;
+
+      color: var(--cream);
+
+      font-size: 0.95rem;
+
+      letter-spacing: 1px;
+
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+
+      color: var(--yellow);
+    }
+
+    /* =========================================
+HERO
+========================================= */
+
+    .hero {
+
+      min-height: 100vh;
+
       position: relative;
-      z-index: 10;
-      width: 90%;
-      max-width: 1000px;
-      animation: floatUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
-      opacity: 0;
-      transform: translateY(40px);
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      overflow: hidden;
     }
 
-    .image-wrapper {
-      position: relative;
-      border-radius: 20px;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
+    /* =========================================
+BACKGROUND IMAGE
+========================================= */
 
-    .image-wrapper:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 30px 60px rgba(245, 166, 35, 0.2), inset 0 0 0 1px rgba(255,255,255,0.1);
-    }
+    .hero-image {
 
-    .image-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      transition: filter 0.4s ease;
-    }
-
-    .image-wrapper:hover img {
-      filter: brightness(1.1) contrast(1.05);
-    }
-
-    /* Subtle reflection */
-    .reflection {
       position: absolute;
-      bottom: -40px;
-      left: 10px;
-      right: 10px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 100%);
-      filter: blur(5px);
-      border-radius: 0 0 20px 20px;
-      pointer-events: none;
+
+      inset: 0;
+
+      background-image:
+        linear-gradient(rgba(7, 17, 32, 0.58),
+          rgba(7, 17, 32, 0.82)),
+
+        url('jukebox-entrance.jpg');
+
+      background-size: cover;
+
+      background-position: center;
+
+      transform: scale(1.04);
+
+      animation: slowZoom 18s ease-in-out infinite alternate;
     }
 
-    .store-text-only {
-      width: 90%;
-      max-width: 800px;
+    @keyframes slowZoom {
+
+      from {
+        transform: scale(1.04);
+      }
+
+      to {
+        transform: scale(1.1);
+      }
+
+    }
+
+    /* =========================================
+NEON GLOW
+========================================= */
+
+    .hero::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 900px;
+      height: 900px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(circle,
+          rgba(47, 109, 255, 0.16),
+          transparent 70%);
+
+      filter: blur(60px);
+
+      z-index: 1;
+    }
+
+    /* =========================================
+CONTENT
+========================================= */
+
+    .hero-content {
+
+      position: relative;
+
+      z-index: 2;
+
       text-align: center;
-      margin-top: 6rem;
-      margin-bottom: 2rem;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 3rem;
-      z-index: 10;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: floatUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s;
+
+      max-width: 900px;
+
+      padding: 2rem;
+
+      animation: fadeUp 1.2s ease forwards;
     }
 
-    .store-text-only h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--accent-color);
+    .hero-content h1 {
+
+      font-family: 'Oswald', sans-serif;
+
+      font-size: clamp(4rem, 9vw, 8rem);
+
+      line-height: 0.92;
+
+      letter-spacing: 3px;
+
+      margin-bottom: 1.5rem;
+
+      text-transform: uppercase;
+
+      text-shadow:
+        0 0 30px rgba(0, 0, 0, 0.5);
     }
 
-    .store-text-only p {
-      font-size: 1.1rem;
-      color: var(--text-muted);
+    .hero-content h1 span {
+
+      color: var(--yellow);
+    }
+
+    .hero-content p {
+
+      font-size: 1.2rem;
+
+      color: var(--cream);
+
+      line-height: 1.8;
+
+      max-width: 700px;
+
+      margin: auto auto 2.5rem;
+    }
+
+    /* =========================================
+BUTTONS
+========================================= */
+
+    .hero-buttons {
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 1rem;
+
+      flex-wrap: wrap;
+    }
+
+    .button {
+
+      padding:
+        1rem 1.8rem;
+
+      text-decoration: none;
+
+      border:
+        2px solid rgba(255, 255, 255, 0.15);
+
+      color: white;
+
+      transition: 0.35s ease;
+
+      letter-spacing: 1px;
+
+      font-weight: 500;
+
+      position: relative;
+
+      overflow: hidden;
+
+      backdrop-filter: blur(8px);
+    }
+
+    .button.primary {
+
+      background: var(--yellow);
+
+      color: #111;
+
+      border-color: var(--yellow);
+
+      box-shadow:
+        0 0 30px rgba(255, 211, 61, 0.25);
+    }
+
+    .button:hover {
+
+      transform:
+        translateY(-3px);
+
+      box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    /* =========================================
+INFO STRIP
+========================================= */
+
+    .info-strip {
+
+      background:
+        linear-gradient(90deg,
+          var(--blue),
+          #15398A);
+
+      border-top:
+        1px solid rgba(255, 255, 255, 0.06);
+
+      border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .info-inner {
+
+      max-width: 1400px;
+
+      margin: auto;
+
+      padding: 2rem;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 2rem;
+
+      text-align: center;
+    }
+
+    .info-item h3 {
+
+      font-family: 'Oswald', sans-serif;
+
+      font-size: 2rem;
+
+      color: var(--yellow);
+
+      margin-bottom: 0.6rem;
+    }
+
+    .info-item p {
+
+      color: #D7DDF0;
+
       line-height: 1.6;
     }
 
-    .classics-banner {
-      width: 100%;
-      margin-top: 2rem;
-      margin-bottom: 6rem;
-      position: relative;
-      height: 400px;
-      display: flex;
+    /* =========================================
+STORY SECTION
+========================================= */
+
+    .story {
+
+      padding: 7rem 2rem;
+
+      background: #091427;
+    }
+
+    .story-inner {
+
+      max-width: 1200px;
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: 1.2fr 1fr;
+
+      gap: 4rem;
+
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
     }
 
-    .classics-banner img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.4;
-      filter: blur(1px) contrast(1.1);
-      z-index: 0;
+    .story-text h2 {
+
+      font-family: 'Oswald', sans-serif;
+
+      font-size: clamp(3rem, 6vw, 5rem);
+
+      line-height: 0.95;
+
+      margin-bottom: 1.5rem;
     }
 
-    .classics-banner::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--bg-color) 0%, transparent 20%, transparent 80%, var(--bg-color) 100%);
-      z-index: 1;
-      pointer-events: none;
+    .story-text p {
+
+      color: var(--muted);
+
+      line-height: 1.9;
+
+      margin-bottom: 1.5rem;
     }
 
-    .classics-content {
-      position: relative;
-      z-index: 2;
+    .story-image {
+
+      min-height: 500px;
+
+      background-image: url('store-interior.jpg');
+
+      background-size: cover;
+
+      background-position: center;
+
+      border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+      box-shadow:
+        0 0 50px rgba(0, 0, 0, 0.4);
+    }
+
+    /* =========================================
+FOOTER
+========================================= */
+
+    footer {
+
+      padding: 3rem 2rem;
+
       text-align: center;
-      background: rgba(5, 5, 5, 0.6);
-      padding: 3rem 4rem;
-      border-radius: 16px;
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(245, 166, 35, 0.2);
+
+      background: #050B16;
+
+      color: #9FA9C4;
+
+      border-top:
+        1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .classics-content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      color: var(--accent-color);
-      margin-bottom: 0.5rem;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    /* =========================================
+ANIMATION
+========================================= */
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+
     }
 
-    .classics-content p {
-      font-size: 1.2rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-main);
-    }
+    /* =========================================
+MOBILE
+========================================= */
 
-    @keyframes slideDown {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @media(max-width:900px) {
 
-    @keyframes floatUp {
-      to { opacity: 1; transform: translateY(0); }
+      .nav-links {
+        display: none;
+      }
+
+      .info-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .story-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+      }
+
     }
   </style>
+
 </head>
+
 <body>
-  <div class="ambient-glow"></div>
-  
-  <header class="top-banner">
-    <img src="storefront_art_no_cars.png" alt="Forever Young Records Awning">
-  </header>
 
-  <main class="centerpiece-container">
-    <div class="image-wrapper">
-      <img src="juke-wall.png" alt="Jukebox Wall Centerpiece">
-      <div class="reflection"></div>
+  <!-- =========================================
+NAVIGATION
+========================================= -->
+
+  <nav>
+
+    ```
+    <div class="nav-inner">
+
+      <div class="logo">
+        FOREVER <span>YOUNG</span>
+      </div>
+
+      <div class="nav-links">
+
+        <a href="#">Home</a>
+        <a href="#">Inventory</a>
+        <a href="#">Memorabilia</a>
+        <a href="#">Visit</a>
+        <a href="#">Contact</a>
+
+      </div>
+
     </div>
-  </main>
+    ```
 
-  <section class="store-text-only">
-    <h2>Visit the Physical Stronghold</h2>
-    <p>Hosting hundreds of thousands of active physical properties on our Grand Prairie showroom floor. Come get lost in the endless aisles of our iconic retro location.</p>
+  </nav>
+
+  <!-- =========================================
+HERO
+========================================= -->
+
+  <section class="hero">
+
+    ```
+    <div class="hero-image"></div>
+
+    <div class="hero-content">
+
+      <h1>
+
+        FOREVER
+        <span>YOUNG</span>
+
+      </h1>
+
+      <p>
+
+        A legendary archive of music culture.
+        Vinyl, memorabilia, rare pressings,
+        and generations of American sound.
+
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#" class="button primary">
+          Explore Collection
+        </a>
+
+        <a href="#" class="button">
+          Visit The Store
+        </a>
+
+      </div>
+
+    </div>
+    ```
+
   </section>
 
-  <section class="classics-banner">
-    <img src="retro_rock_influence.png" alt="Retro Rock Vibe Background">
-    <div class="classics-content">
-      <h2>The Classics Live On</h2>
-      <p>Explore the golden era of rock and roll</p>
+  <!-- =========================================
+INFO STRIP
+========================================= -->
+
+  <section class="info-strip">
+
+    ```
+    <div class="info-inner">
+
+      <div class="info-item">
+
+        <h3>250K+</h3>
+
+        <p>
+          Vinyl records, CDs,
+          tapes, collectibles,
+          and music artifacts.
+        </p>
+
+      </div>
+
+      <div class="info-item">
+
+        <h3>Since 1984</h3>
+
+        <p>
+          One of Texas’
+          most iconic independent
+          music destinations.
+        </p>
+
+      </div>
+
+      <div class="info-item">
+
+        <h3>Collectors</h3>
+
+        <p>
+          Rare finds,
+          memorabilia,
+          and deep catalog discoveries.
+        </p>
+
+      </div>
+
     </div>
+    ```
+
   </section>
+
+  <!-- =========================================
+STORY
+========================================= -->
+
+  <section class="story">
+
+    ```
+    <div class="story-inner">
+
+      <div class="story-text">
+
+        <h2>
+
+          More Than
+          A Record Store
+
+        </h2>
+
+        <p>
+
+          Forever Young Records is a living archive
+          of music history —
+          a destination for collectors,
+          enthusiasts,
+          and generations of music lovers.
+
+        </p>
+
+        <p>
+
+          From rare vinyl and memorabilia
+          to iconic artifacts spanning decades
+          of American sound,
+          the store has become a landmark
+          for those searching for something timeless.
+
+        </p>
+
+        <a href="#" class="button primary">
+          Learn More
+        </a>
+
+      </div>
+
+      <div class="story-image"></div>
+
+    </div>
+    ```
+
+  </section>
+
+  <!-- =========================================
+FOOTER
+========================================= -->
+
+  <footer>
+
+    ```
+    Forever Young Records —
+    Music Lives Forever.
+    ```
+
+  </footer>
+
+  <script>
+
+    /* =========================================
+    BUTTON LIGHT TRACKING
+    ========================================= */
+
+    const buttons =
+      document.querySelectorAll('.button');
+
+    buttons.forEach(button => {
+
+      button.addEventListener('mousemove', e => {
+
+        const rect =
+          button.getBoundingClientRect();
+
+        const x =
+          e.clientX - rect.left;
+
+        const y =
+          e.clientY - rect.top;
+
+        button.style.background =
+          `radial-gradient(circle at ${x}px ${y}px,
+        rgba(255,255,255,0.18),
+        rgba(255,255,255,0) 55%)`;
+
+        if (button.classList.contains('primary')) {
+
+          button.style.backgroundColor =
+            '#FFD33D';
+        }
+
+      });
+
+      button.addEventListener('mouseleave', () => {
+
+        if (button.classList.contains('primary')) {
+
+          button.style.background =
+            '#FFD33D';
+
+        } else {
+
+          button.style.background =
+            'transparent';
+
+        }
+
+      });
+
+    });
+
+  </script>
+
 </body>
+
 </html>
