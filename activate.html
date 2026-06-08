@@ -305,7 +305,10 @@
       .then(res => res.json())
       .then(data => {
         if(data.error) console.error("Error activating:", data.error);
-        else console.log("Activated successfully:", data);
+        else {
+          console.log("Activated successfully:", data);
+          localStorage.setItem('fyr_phone', cleanPhone);
+        }
       })
       .catch(err => console.error("Network error:", err));
     });

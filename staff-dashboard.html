@@ -267,6 +267,34 @@
         .catch(err => console.error("Error fetching user:", err));
     }
 
+    function checkQueue() {
+      fetch('/api/queue')
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.queue && data.queue.length > 0) {
+            const user = data.queue[0]; // Most recent check-in
+            const currentPhone = document.querySelector('#customer-phone span').textContent;
+            
+            // If it's a new person, or if the screen is empty, show them
+            if (emptyState.style.display !== 'none' || currentPhone !== user.phone) {
+              emptyState.style.display = 'none';
+              customerProfile.style.display = 'block';
+              statusMsg.style.display = 'none';
+              addPunchBtn.classList.remove('success');
+              addPunchBtn.textContent = 'Add 1 Punch';
+              
+              document.querySelector('#customer-name span').textContent = user.name;
+              document.querySelector('#customer-phone span').textContent = user.phone;
+              document.getElementById('current-punches').textContent = user.punches;
+            }
+          }
+        })
+        .catch(err => console.error("Error polling queue:", err));
+    }
+
+    // Poll the queue every 3 seconds
+    setInterval(checkQueue, 3000);
+
     addPunchBtn.addEventListener('click', function() {
       const phone = document.querySelector('#customer-phone span').textContent;
       

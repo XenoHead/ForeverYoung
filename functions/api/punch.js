@@ -49,7 +49,7 @@ export async function onRequestPost(context) {
     }
 
     const newPunches = user.punches + 1;
-    await db.prepare("UPDATE users SET punches = ? WHERE phone = ?").bind(newPunches, body.phone).run();
+    await db.prepare("UPDATE users SET punches = ?, last_checkin = NULL WHERE phone = ?").bind(newPunches, body.phone).run();
 
     return new Response(JSON.stringify({ success: true, punches: newPunches, name: user.name }), { 
       status: 200,
