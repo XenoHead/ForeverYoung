@@ -57,23 +57,57 @@
     <img src="XenoHead_logo.png" alt="Forever Young Records" class="logo">
     <div id="icon-holder"></div>
     <h1 id="status-title">Checking In...</h1>
+    
+    <div id="manual-entry" style="display: none; margin-top: 1.5rem;">
+      <p style="margin-bottom: 1rem; color: #B6C0D7;">Please enter your phone number to check in:</p>
+      <input type="tel" id="manual-phone" placeholder="(555) 555-5555" style="width: 100%; padding: 1rem; border-radius: 8px; border: none; font-size: 1.2rem; text-align: center; margin-bottom: 1rem;">
+      <button id="manual-btn" style="width: 100%; padding: 1rem; background: #FFD447; border: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; cursor: pointer;">Check In</button>
+      <p style="margin-top: 1rem; font-size: 0.9rem;"><a href="/activate.html" style="color: #FFD447;">Need to sign up first?</a></p>
+    </div>
+
     <p class="subtitle" id="status-message">Please wait while we securely connect your profile to the register.</p>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const phone = localStorage.getItem('fyr_phone');
+      let phone = null;
+      try {
+        phone = localStorage.getItem('fyr_phone');
+      } catch (err) {
+        console.warn("localStorage blocked");
+      }
       
       if (!phone) {
-        // Not activated yet on this device, send them to activate page
-        window.location.href = '/activate.html';
+        // Camera sandbox cleared the memory, ask for it manually
+        document.getElementById('status-title').textContent = "Welcome Back!";
+        document.getElementById('status-message').style.display = 'none';
+        document.getElementById('manual-entry').style.display = 'block';
         return;
       }
 
+      doCheckIn(phone);
+    });
+
+    document.getElementById('manual-btn').addEventListener('click', () => {
+      const inputVal = document.getElementById('manual-phone').value.replace(/\D/g, '');
+      if(inputVal.length < 10) {
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+      }
+      try {
+        localStorage.setItem('fyr_phone', inputVal);
+      } catch (err) {}
+      document.getElementById('manual-entry').style.display = 'none';
+      document.getElementById('status-message').style.display = 'block';
+      document.getElementById('status-title').textContent = "Checking In...";
+      doCheckIn(inputVal);
+    });
+
+    function doCheckIn(phoneNum) {
       fetch('/api/checkin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone })
+        body: JSON.stringify({ phone: phoneNum })
       })
       .then(res => res.json())
       .then(data => {
@@ -92,7 +126,7 @@
         document.getElementById('status-title').style.color = "#ff4757";
         document.getElementById('status-message').textContent = err.message || "Please ask the cashier for assistance.";
       });
-    });
+    }
   </script>
 </body>
 </html>

@@ -268,7 +268,7 @@
     }
 
     function checkQueue() {
-      fetch('/api/queue')
+      fetch('/api/queue?t=' + Date.now(), { cache: 'no-store' })
         .then(res => res.json())
         .then(data => {
           if (data.success && data.queue && data.queue.length > 0) {

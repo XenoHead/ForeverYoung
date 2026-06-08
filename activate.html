@@ -245,8 +245,8 @@
     <h1>Your Card</h1>
     
     <div class="card-graphic">
-      <div class="barcode-container">
-        <svg id="barcode"></svg>
+      <div class="barcode-container" style="text-align: center; color: #08111F; font-weight: bold;">
+        Ready for Check-In!
       </div>
       <div class="punches">
         <div class="punch-hole"></div>
@@ -284,17 +284,7 @@
       // Update name on card
       document.getElementById('display-name').textContent = name;
       
-      // Generate Barcode using the cleaned phone number
-      // In a real app, this might be a generated User ID from the backend
-      JsBarcode("#barcode", cleanPhone, {
-        format: "CODE128",
-        lineColor: "#000",
-        width: 2,
-        height: 60,
-        displayValue: true,
-        fontSize: 16,
-        margin: 0
-      });
+      // Removed JsBarcode since we are using Self Check-In now!
       
       // Call the Cloudflare API to register the user
       fetch('/api/activate', {
@@ -304,10 +294,13 @@
       })
       .then(res => res.json())
       .then(data => {
-        if(data.error) console.error("Error activating:", data.error);
-        else {
+        if(data.error) {
+          console.error("Error activating:", data.error);
+        } else {
           console.log("Activated successfully:", data);
-          localStorage.setItem('fyr_phone', cleanPhone);
+          try {
+            localStorage.setItem('fyr_phone', cleanPhone);
+          } catch (err) {}
         }
       })
       .catch(err => console.error("Network error:", err));
