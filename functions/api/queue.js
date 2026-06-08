@@ -5,7 +5,7 @@ export async function onRequestGet(context) {
     
     // Get users who checked in within the last 15 minutes, sorted by most recent
     const result = await db.prepare(`
-      SELECT phone, name, punches, last_checkin 
+      SELECT phone, name, punches_cd, punches_vinyl, punches_cassette, punches_45, last_checkin 
       FROM users 
       WHERE last_checkin IS NOT NULL 
         AND last_checkin >= datetime('now', '-15 minutes')

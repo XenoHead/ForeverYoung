@@ -2,6 +2,9 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   phone TEXT PRIMARY KEY,
   name TEXT NOT NULL,
-  punches INTEGER DEFAULT 0,
+  punches_cd INTEGER DEFAULT 0,
+  punches_vinyl INTEGER DEFAULT 0,
+  punches_cassette INTEGER DEFAULT 0,
+  punches_45 INTEGER DEFAULT 0,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

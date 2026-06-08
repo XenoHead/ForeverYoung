@@ -31,8 +31,9 @@ export async function onRequestPost(context) {
     const { request, env } = context;
     const body = await request.json();
     
-    if (!body.phone) {
-      return new Response(JSON.stringify({ error: "Missing phone" }), { status: 400 });
+    const validTypes = ['cd', 'vinyl', 'cassette', '45'];
+    if (!body.phone || !body.type || !validTypes.includes(body.type)) {
+      return new Response(JSON.stringify({ error: "Missing phone or invalid punch type" }), { status: 400 });
     }
     
     const db = env.DB;
@@ -44,14 +45,15 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ error: "User not found. Please have them activate first." }), { status: 404 });
     }
 
-    if (user.punches >= 10) {
-      return new Response(JSON.stringify({ error: "Max punches reached! Time for a reward." }), { status: 400 });
+    const col = `punches_${body.type}`;
+    if (user[col] >= 10) {
+      return new Response(JSON.stringify({ error: "Max punches reached for this category! Time for a reward." }), { status: 400 });
     }
 
-    const newPunches = user.punches + 1;
-    await db.prepare("UPDATE users SET punches = ?, last_checkin = NULL WHERE phone = ?").bind(newPunches, body.phone).run();
+    const newPunches = user[col] + 1;
+    await db.prepare(`UPDATE users SET ${col} = ?, last_checkin = NULL WHERE phone = ?`).bind(newPunches, body.phone).run();
 
-    return new Response(JSON.stringify({ success: true, punches: newPunches, name: user.name }), { 
+    return new Response(JSON.stringify({ success: true, punches: newPunches, type: body.type, name: user.name }), { 
       status: 200,
       headers: { "Content-Type": "application/json" }
     });

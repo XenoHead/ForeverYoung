@@ -13,7 +13,7 @@ export async function onRequestPost(context) {
     const db = env.DB;
     // Insert new user, or update their name if they are re-activating
     const result = await db.prepare(
-      "INSERT INTO users (phone, name, punches) VALUES (?, ?, 0) ON CONFLICT(phone) DO UPDATE SET name=excluded.name"
+      "INSERT INTO users (phone, name, punches_cd, punches_vinyl, punches_cassette, punches_45) VALUES (?, ?, 0, 0, 0, 0) ON CONFLICT(phone) DO UPDATE SET name=excluded.name"
     ).bind(body.phone, body.name).run();
 
     if (result.success) {

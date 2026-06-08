@@ -209,12 +209,33 @@
         <div class="profile-info" id="customer-name"><strong>Name:</strong> <span>John Doe</span></div>
         <div class="profile-info" id="customer-phone"><strong>Phone:</strong> <span>(555) 123-4567</span></div>
         
-        <div class="punch-count">
-          <span id="current-punches">0</span> / 10 Punches
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+          <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.9rem; color: #B6C0D7; margin-bottom: 0.5rem;">CD Punches</div>
+            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;"><span id="punches-cd">0</span> / 10</div>
+            <button class="action-btn punch-btn" data-type="cd" style="font-size: 0.9rem; padding: 0.5rem;">Add CD Punch</button>
+          </div>
+          
+          <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.9rem; color: #B6C0D7; margin-bottom: 0.5rem;">Used Vinyl</div>
+            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;"><span id="punches-vinyl">0</span> / 10</div>
+            <button class="action-btn punch-btn" data-type="vinyl" style="font-size: 0.9rem; padding: 0.5rem;">Add Vinyl Punch</button>
+          </div>
+          
+          <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.9rem; color: #B6C0D7; margin-bottom: 0.5rem;">Cassettes</div>
+            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;"><span id="punches-cassette">0</span> / 10</div>
+            <button class="action-btn punch-btn" data-type="cassette" style="font-size: 0.9rem; padding: 0.5rem;">Add Cassette Punch</button>
+          </div>
+          
+          <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: center;">
+            <div style="font-size: 0.9rem; color: #B6C0D7; margin-bottom: 0.5rem;">45's</div>
+            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;"><span id="punches-45">0</span> / 10</div>
+            <button class="action-btn punch-btn" data-type="45" style="font-size: 0.9rem; padding: 0.5rem;">Add 45's Punch</button>
+          </div>
         </div>
 
-        <button class="action-btn" id="add-punch-btn">Add 1 Punch</button>
-        <div class="status-msg" id="status-msg">Punch added successfully! SMS sent.</div>
+        <div class="status-msg" id="status-msg" style="text-align: center;">Punch added successfully!</div>
       </div>
     </div>
   </div>
@@ -257,12 +278,13 @@
           emptyState.style.display = 'none';
           customerProfile.style.display = 'block';
           statusMsg.style.display = 'none';
-          addPunchBtn.classList.remove('success');
-          addPunchBtn.textContent = 'Add 1 Punch';
           
           document.querySelector('#customer-name span').textContent = data.user.name;
           document.querySelector('#customer-phone span').textContent = data.user.phone;
-          document.getElementById('current-punches').textContent = data.user.punches;
+          document.getElementById('punches-cd').textContent = data.user.punches_cd || 0;
+          document.getElementById('punches-vinyl').textContent = data.user.punches_vinyl || 0;
+          document.getElementById('punches-cassette').textContent = data.user.punches_cassette || 0;
+          document.getElementById('punches-45').textContent = data.user.punches_45 || 0;
         })
         .catch(err => console.error("Error fetching user:", err));
     }
@@ -280,12 +302,13 @@
               emptyState.style.display = 'none';
               customerProfile.style.display = 'block';
               statusMsg.style.display = 'none';
-              addPunchBtn.classList.remove('success');
-              addPunchBtn.textContent = 'Add 1 Punch';
               
               document.querySelector('#customer-name span').textContent = user.name;
               document.querySelector('#customer-phone span').textContent = user.phone;
-              document.getElementById('current-punches').textContent = user.punches;
+              document.getElementById('punches-cd').textContent = user.punches_cd || 0;
+              document.getElementById('punches-vinyl').textContent = user.punches_vinyl || 0;
+              document.getElementById('punches-cassette').textContent = user.punches_cassette || 0;
+              document.getElementById('punches-45').textContent = user.punches_45 || 0;
             }
           }
         })
@@ -295,35 +318,40 @@
     // Poll the queue every 3 seconds
     setInterval(checkQueue, 3000);
 
-    addPunchBtn.addEventListener('click', function() {
-      const phone = document.querySelector('#customer-phone span').textContent;
-      
-      fetch('/api/punch', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if(data.error) {
-          alert(data.error);
-        } else {
-          document.getElementById('current-punches').textContent = data.punches;
-          
-          this.classList.add('success');
-          this.textContent = 'Punch Added!';
-          statusMsg.style.display = 'block';
-          
-          setTimeout(() => {
-            this.classList.remove('success');
-            this.textContent = 'Add 1 Punch';
-            statusMsg.style.display = 'none';
-          }, 3000);
-        }
-      })
-      .catch(err => console.error("Error adding punch:", err))
-      .finally(() => {
-        scannerInput.focus();
+    const punchBtns = document.querySelectorAll('.punch-btn');
+    punchBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const phone = document.querySelector('#customer-phone span').textContent;
+        const type = this.getAttribute('data-type');
+        const originalText = this.textContent;
+        
+        fetch('/api/punch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone, type })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if(data.error) {
+            alert(data.error);
+          } else {
+            document.getElementById(`punches-${type}`).textContent = data.punches;
+            
+            this.classList.add('success');
+            this.textContent = 'Added!';
+            statusMsg.style.display = 'block';
+            
+            setTimeout(() => {
+              this.classList.remove('success');
+              this.textContent = originalText;
+              statusMsg.style.display = 'none';
+            }, 3000);
+          }
+        })
+        .catch(err => console.error("Error adding punch:", err))
+        .finally(() => {
+          scannerInput.focus();
+        });
       });
     });
   </script>
