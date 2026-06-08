@@ -301,13 +301,16 @@
 
   <div class="container">
     <div class="search-panel">
-      <form id="search-form" class="search-row">
+      <form id="search-form" class="search-row" action="https://www.musicstack.com/my/index.cgi" method="POST" target="_blank">
+        <input type="hidden" name="seller" value="725319">
+        <input type="hidden" name="currency" value="USD">
+        
         <div class="search-input-wrapper">
-          <input type="text" id="search-query" placeholder="Search our massive inventory...">
+          <input type="text" name="find" id="search-query" placeholder="Search our massive inventory...">
         </div>
         
         <div style="flex: 1; min-width: 150px;">
-          <select id="search-type">
+          <select name="search_type" id="search-type">
             <option value="artist">Artist Search</option>
             <option value="title">Title Search</option>
             <option value="label">Label Search</option>
@@ -317,26 +320,26 @@
         </div>
 
         <div style="flex: 1; min-width: 180px;">
-          <select id="search-format">
-            <option value="all">All Formats</option>
+          <select name="media" id="search-format">
+            <option value="%">All Formats</option>
             <option disabled>-----------------</option>
-            <option value="vinyl_all">All Vinyl Formats</option>
-            <option value="cd_all">All CD Formats</option>
+            <option value="vinyl">All Vinyl Formats</option>
+            <option value="cd">All CD Formats</option>
             <option disabled>-----------------</option>
-            <option value="vinyl_lp">Vinyl - LP</option>
-            <option value="vinyl_45">Vinyl - 45 & 7"</option>
-            <option value="vinyl_10">Vinyl - 10"</option>
-            <option value="vinyl_12">Vinyl - 12"</option>
-            <option value="vinyl_78">Vinyl - 78</option>
+            <option value="vinyllp">Vinyl - LP</option>
+            <option value="vinyl7">Vinyl - 45 & 7"</option>
+            <option value="vinyl10">Vinyl - 10"</option>
+            <option value="vinyl12">Vinyl - 12"</option>
+            <option value="vinyl78">Vinyl - 78</option>
             <option disabled>-----------------</option>
-            <option value="cd_single">CD Single & CD EP</option>
-            <option value="vinyl_ep">Vinyl EP & Mini LP</option>
+            <option value="cdsing">CD Single & CD EP</option>
+            <option value="ep">Vinyl EP & Mini LP</option>
             <option value="cassette">Cassette</option>
             <option value="video">Video</option>
             <option value="book">Book</option>
             <option value="clothing">Clothing</option>
             <option value="memorabilia">Memorabilia</option>
-            <option value="misc">Miscellaneous</option>
+            <option value="miscellaneous">Miscellaneous</option>
           </select>
         </div>
 
@@ -345,57 +348,37 @@
 
       <div class="browse-letters">
         <span style="color: #B6C0D7; display: flex; align-items: center; margin-right: 0.5rem; font-family: 'Oswald', sans-serif;">BROWSE:</span>
-        <a href="#">#</a>
-        <a href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a><a href="#">E</a>
-        <a href="#">F</a><a href="#">G</a><a href="#">H</a><a href="#">I</a><a href="#">J</a>
-        <a href="#">K</a><a href="#">L</a><a href="#">M</a><a href="#">N</a><a href="#">O</a>
-        <a href="#">P</a><a href="#">Q</a><a href="#">R</a><a href="#">S</a><a href="#">T</a>
-        <a href="#">U</a><a href="#">V</a><a href="#">W</a><a href="#">X</a><a href="#">Y</a><a href="#">Z</a>
-      </div>
-    </div>
-
-    <div id="loading" class="loading-state">
-      <div class="spinner"></div>
-      <p>Digging through the crates...</p>
-    </div>
-
-    <div id="results" class="results-grid">
-      <!-- Example Mockup Card (Will be replaced by JS) -->
-      <div class="record-card">
-        <div class="record-art">
-          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
-        </div>
-        <div class="record-info">
-          <div class="record-title">The Dark Side of the Moon</div>
-          <div class="record-artist">Pink Floyd</div>
-          <div class="record-details">
-            <div><strong>Format:</strong> Vinyl - LP</div>
-            <div><strong>Condition:</strong> Near Mint (NM)</div>
-            <div><strong>Label:</strong> Harvest</div>
-          </div>
-          <div class="record-price">
-            $35.00
-            <button class="buy-btn">View Details</button>
-          </div>
-        </div>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=0-9" target="_blank">#</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=a" target="_blank">A</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=b" target="_blank">B</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=c" target="_blank">C</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=d" target="_blank">D</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=e" target="_blank">E</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=f" target="_blank">F</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=g" target="_blank">G</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=h" target="_blank">H</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=i" target="_blank">I</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=j" target="_blank">J</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=k" target="_blank">K</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=l" target="_blank">L</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=m" target="_blank">M</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=n" target="_blank">N</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=o" target="_blank">O</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=p" target="_blank">P</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=q" target="_blank">Q</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=r" target="_blank">R</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=s" target="_blank">S</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=t" target="_blank">T</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=u" target="_blank">U</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=v" target="_blank">V</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=w" target="_blank">W</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=x" target="_blank">X</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=y" target="_blank">Y</a>
+        <a href="https://www.musicstack.com/my/index.cgi?seller=725319&find=z" target="_blank">Z</a>
       </div>
     </div>
 
   </div>
 
-  <script>
-    document.getElementById('search-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('loading').style.display = 'block';
-      document.getElementById('results').style.display = 'none';
-
-      // TODO: Connect to Cloudflare Worker proxy
-      // Mock loading delay
-      setTimeout(() => {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('results').style.display = 'grid';
-      }, 1500);
-    });
-  </script>
 </body>
 </html>
