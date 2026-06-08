@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Rewards Dashboard | Forever Young Records</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #08111F;
+      color: #FFF8DF;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    /* Film Grain Background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+      animation: grainMove 8s steps(2) infinite;
+    }
+
+    @keyframes grainMove {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(-2px, 1px); }
+      50% { transform: translate(2px, -1px); }
+      75% { transform: translate(-1px, 2px); }
+      100% { transform: translate(0px, 0px); }
+    }
+
+    :root {
+      --blue: #0A2C74;
+      --yellow: #FFD447;
+      --cream: #FFF8DF;
+      --dark: #08111F;
+      --green: #2ecc71;
+    }
+
+    header {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 2rem;
+      z-index: 10;
+    }
+
+    header img { height: 50px; }
+    
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+      width: 100%;
+      max-width: 800px;
+      z-index: 10;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .panel h2 {
+      font-family: 'Oswald', sans-serif;
+      margin-bottom: 1rem;
+      color: var(--yellow);
+    }
+
+    /* Scanner Input */
+    .scanner-box {
+      text-align: center;
+    }
+
+    .scanner-box label {
+      display: block;
+      margin-bottom: 1rem;
+      color: #B6C0D7;
+    }
+
+    #scanner-input {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0,0,0,0.5);
+      border: 2px solid var(--blue);
+      border-radius: 8px;
+      color: var(--yellow);
+      font-family: monospace;
+      font-size: 1.2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    #scanner-input:focus {
+      outline: none;
+      border-color: var(--yellow);
+      box-shadow: 0 0 15px rgba(255,212,71,0.2);
+    }
+
+    /* Customer Profile */
+    #customer-profile {
+      display: none;
+    }
+
+    .profile-info {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .punch-count {
+      font-size: 3rem;
+      font-family: 'Oswald', sans-serif;
+      color: var(--yellow);
+      margin: 1rem 0;
+    }
+
+    button.action-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--yellow);
+      color: var(--dark);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+
+    button.action-btn:hover {
+      background: #FFF;
+      transform: translateY(-2px);
+    }
+
+    button.action-btn.success {
+      background: var(--green);
+      color: white;
+    }
+
+    .status-msg {
+      margin-top: 1rem;
+      color: var(--green);
+      font-weight: bold;
+      display: none;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: #B6C0D7;
+      padding: 3rem 0;
+      font-style: italic;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="XenoHead_logo.png" alt="Forever Young Records">
+    <h1>Staff Dashboard</h1>
+  </header>
+
+  <div class="main-grid">
+    <!-- Scanner Panel -->
+    <div class="panel scanner-box">
+      <h2>Scanner Ready</h2>
+      <label for="scanner-input">Scan Customer Barcode</label>
+      <input type="text" id="scanner-input" placeholder="Waiting for scan..." autofocus autocomplete="off">
+    </div>
+
+    <!-- Customer Profile Panel -->
+    <div class="panel">
+      <h2>Customer Profile</h2>
+      
+      <div id="empty-state" class="empty-state">
+        Scan a customer's rewards card to view their profile.
+      </div>
+
+      <div id="customer-profile">
+        <div class="profile-info" id="customer-name"><strong>Name:</strong> <span>John Doe</span></div>
+        <div class="profile-info" id="customer-phone"><strong>Phone:</strong> <span>(555) 123-4567</span></div>
+        
+        <div class="punch-count">
+          <span id="current-punches">0</span> / 10 Punches
+        </div>
+
+        <button class="action-btn" id="add-punch-btn">Add 1 Punch</button>
+        <div class="status-msg" id="status-msg">Punch added successfully! SMS sent.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const scannerInput = document.getElementById('scanner-input');
+    const customerProfile = document.getElementById('customer-profile');
+    const emptyState = document.getElementById('empty-state');
+    const addPunchBtn = document.getElementById('add-punch-btn');
+    const statusMsg = document.getElementById('status-msg');
+    
+    // Auto-focus the scanner input if they click anywhere on the page
+    document.addEventListener('click', () => {
+      scannerInput.focus();
+    });
+
+    // Listen for the scanner's 'Enter' key
+    scannerInput.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        
+        const scannedCode = scannerInput.value.trim();
+        if(scannedCode) {
+          loadCustomerData(scannedCode);
+        }
+        
+        // Clear input for next scan
+        scannerInput.value = '';
+      }
+    });
+
+    // Mock function to simulate API call
+    function loadCustomerData(barcodeData) {
+      console.log("Mock: Fetching data for barcode", barcodeData);
+      
+      // Hide empty state, show profile
+      emptyState.style.display = 'none';
+      customerProfile.style.display = 'block';
+      statusMsg.style.display = 'none';
+      addPunchBtn.classList.remove('success');
+      addPunchBtn.textContent = 'Add 1 Punch';
+      
+      // Update UI with mock data (Assume barcode is the phone number for now)
+      document.querySelector('#customer-phone span').textContent = barcodeData;
+      
+      // Generate a random initial punch count for demo purposes (0 if it's a new activation)
+      // If it's exactly 10 digits, we'll pretend it's a real scan and randomise 0-5.
+      document.getElementById('current-punches').textContent = Math.floor(Math.random() * 6);
+    }
+
+    addPunchBtn.addEventListener('click', function() {
+      // Mock adding a punch
+      const punchSpan = document.getElementById('current-punches');
+      let current = parseInt(punchSpan.textContent);
+      
+      if(current < 10) {
+        current += 1;
+        punchSpan.textContent = current;
+        
+        // Show success
+        this.classList.add('success');
+        this.textContent = 'Punch Added!';
+        statusMsg.style.display = 'block';
+        
+        // Reset after 3 seconds
+        setTimeout(() => {
+          this.classList.remove('success');
+          this.textContent = 'Add 1 Punch';
+          statusMsg.style.display = 'none';
+        }, 3000);
+        
+        console.log("Mock: Sending POST request to add punch and trigger SMS.");
+      } else {
+        alert("Customer already has max punches! Time for a reward.");
+      }
+      
+      // Refocus scanner just in case
+      scannerInput.focus();
+    });
+  </script>
+</body>
+</html>

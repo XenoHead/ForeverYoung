@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Activate Rewards | Forever Young Records</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #08111F;
+      color: #FFF8DF;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Film Grain Background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 0;
+      animation: grainMove 8s steps(2) infinite;
+    }
+
+    @keyframes grainMove {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(-2px, 1px); }
+      50% { transform: translate(2px, -1px); }
+      75% { transform: translate(-1px, 2px); }
+      100% { transform: translate(0px, 0px); }
+    }
+
+    :root {
+      --blue: #0A2C74;
+      --blueBright: #2C6CFF;
+      --yellow: #FFD447;
+      --cream: #FFF8DF;
+      --dark: #08111F;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 150px;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    p.subtitle {
+      color: #B6C0D7;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    /* Form Styles */
+    #activation-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .input-group {
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      color: #B6C0D7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--cream);
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--yellow);
+      box-shadow: 0 0 10px rgba(255, 212, 71, 0.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      background: var(--yellow);
+      color: var(--dark);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 700;
+    }
+
+    button:hover {
+      background: #FFF;
+      box-shadow: 0 0 15px rgba(255, 212, 71, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Card View Styles */
+    #digital-card {
+      display: none;
+    }
+
+    .card-graphic {
+      background: linear-gradient(135deg, var(--blue), var(--dark));
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-graphic::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .barcode-container {
+      background: #FFF;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    #barcode {
+      width: 100%;
+      max-height: 80px;
+    }
+
+    .punches {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+
+    .punch-hole {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .card-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1rem;
+    }
+    
+    .card-instruction {
+      font-size: 0.9rem;
+      color: var(--yellow);
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container" id="view-form">
+    <img src="XenoHead_logo.png" alt="Forever Young Records" class="logo">
+    <h1>Rewards Access</h1>
+    <p class="subtitle">Show this screen to the cashier to initialize your account.</p>
+    
+    <form id="activation-form">
+      <div class="input-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" required placeholder="John Doe">
+      </div>
+      <div class="input-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" required placeholder="(555) 555-5555">
+      </div>
+      <button type="submit">Activate Card</button>
+    </form>
+  </div>
+
+  <div class="container" id="digital-card">
+    <img src="XenoHead_logo.png" alt="Forever Young Records" class="logo" style="max-width: 100px; margin-bottom: 1rem;">
+    <h1>Your Card</h1>
+    
+    <div class="card-graphic">
+      <div class="barcode-container">
+        <svg id="barcode"></svg>
+      </div>
+      <div class="punches">
+        <div class="punch-hole"></div>
+        <div class="punch-hole"></div>
+        <div class="punch-hole"></div>
+        <div class="punch-hole"></div>
+        <div class="punch-hole"></div>
+        <div class="punch-hole"></div>
+      </div>
+    </div>
+    
+    <div class="card-name" id="display-name">John Doe</div>
+    <div class="card-instruction">Please hand your phone to the cashier to scan and complete setup.</div>
+  </div>
+
+  <script>
+    document.getElementById('activation-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      let phone = document.getElementById('phone').value;
+      
+      // Basic phone number cleaning (remove non-digits)
+      const cleanPhone = phone.replace(/\D/g, '');
+      
+      if(cleanPhone.length < 10) {
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+      }
+
+      // Hide form, show card
+      document.getElementById('view-form').style.display = 'none';
+      document.getElementById('digital-card').style.display = 'block';
+      
+      // Update name on card
+      document.getElementById('display-name').textContent = name;
+      
+      // Generate Barcode using the cleaned phone number
+      // In a real app, this might be a generated User ID from the backend
+      JsBarcode("#barcode", cleanPhone, {
+        format: "CODE128",
+        lineColor: "#000",
+        width: 2,
+        height: 60,
+        displayValue: true,
+        fontSize: 16,
+        margin: 0
+      });
+      
+      // TODO: Here is where we will eventually POST the name/phone to Cloudflare D1 via API
+      console.log("Mock: Sending user data to backend...", { name, phone: cleanPhone });
+    });
+  </script>
+</body>
+</html>

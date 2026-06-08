@@ -1,54 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Forever Young Records</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { background: #08111F; color: #FFF8DF; overflow-x: hidden; font-family: 'Outfit', sans-serif; }
-    
-    :root { 
-      --blue: #0A2C74; 
-      --blueBright: #2C6CFF; 
-      --yellow: #FFD447; 
-      --cream: #FFF8DF; 
-      --dark: #08111F; 
-      --muted: #B6C0D7; 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #08111F;
+      color: #FFF8DF;
+      overflow-x: hidden;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    :root {
+      --blue: #0A2C74;
+      --blueBright: #2C6CFF;
+      --yellow: #FFD447;
+      --cream: #FFF8DF;
+      --dark: #08111F;
+      --muted: #B6C0D7;
+    }
+
     /* Film Grain */
     body::before {
-      content: ""; 
-      position: fixed; 
+      content: "";
+      position: fixed;
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      opacity: 0.06; 
-      pointer-events: none; 
-      z-index: 999; 
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 999;
       animation: grainMove 8s steps(2) infinite;
     }
-    @keyframes grainMove { 
-      0% { transform: translate(0px, 0px); } 
-      25% { transform: translate(-2px, 1px); } 
-      50% { transform: translate(2px, -1px); } 
-      75% { transform: translate(-1px, 2px); } 
-      100% { transform: translate(0px, 0px); } 
+
+    @keyframes grainMove {
+      0% {
+        transform: translate(0px, 0px);
+      }
+
+      25% {
+        transform: translate(-2px, 1px);
+      }
+
+      50% {
+        transform: translate(2px, -1px);
+      }
+
+      75% {
+        transform: translate(-1px, 2px);
+      }
+
+      100% {
+        transform: translate(0px, 0px);
+      }
     }
-    
+
     /* Navigation */
-    nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; backdrop-filter: blur(12px); background: rgba(8, 17, 31, 0.72); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
-    .nav-inner { max-width: 1400px; margin: auto; padding: 1.1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo img { height: 58px; object-fit: contain; }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { color: var(--cream); text-decoration: none; font-size: 0.95rem; letter-spacing: 1px; transition: all 0.3s ease; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 50%; background-color: var(--yellow); transition: all 0.3s ease; transform: translateX(-50%); }
-    .nav-links a:hover { color: var(--yellow); text-shadow: 0 0 10px rgba(255, 212, 71, 0.4); }
-    .nav-links a:hover::after { width: 100%; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(8, 17, 31, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-inner {
+      max-width: 1400px;
+      margin: auto;
+      padding: 1.1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 58px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 50%;
+      background-color: var(--yellow);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+      text-shadow: 0 0 10px rgba(255, 212, 71, 0.4);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
     /* Header Store Info */
     .top-store-info {
@@ -56,6 +138,7 @@
       text-align: center;
       background: linear-gradient(to bottom, rgba(10, 44, 116, 0.2), transparent);
     }
+
     .top-store-info h1 {
       font-family: 'Oswald', sans-serif;
       font-size: 4rem;
@@ -64,6 +147,7 @@
       letter-spacing: 2px;
       margin-bottom: 1.5rem;
     }
+
     .top-store-info .info-details {
       display: flex;
       flex-wrap: wrap;
@@ -73,6 +157,7 @@
       font-size: 1.3rem;
       font-family: 'Outfit', sans-serif;
     }
+
     .top-store-info .info-details span strong {
       color: var(--yellow);
       font-weight: 600;
@@ -81,11 +166,13 @@
 
     /* Layout */
     .contact-container {
-      max-width: 1400px; /* Increased max-width to let TV be bigger without clipping content */
+      max-width: 1400px;
+      /* Increased max-width to let TV be bigger without clipping content */
       margin: 0 auto 6rem;
       padding: 2rem;
       display: grid;
-      grid-template-columns: 1.4fr 1fr; /* left side (TV) is bigger */
+      grid-template-columns: 1.4fr 1fr;
+      /* left side (TV) is bigger */
       gap: 4rem;
       position: relative;
       z-index: 2;
@@ -96,17 +183,19 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 12px;
       padding: 2.5rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
+
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
+
     .form-group label {
       font-family: 'Oswald', sans-serif;
       text-transform: uppercase;
@@ -114,20 +203,25 @@
       color: var(--yellow);
       font-size: 0.9rem;
     }
-    .form-group input, .form-group textarea {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.1);
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 1rem;
       color: var(--cream);
       font-family: 'Outfit', sans-serif;
       border-radius: 4px;
       transition: border-color 0.3s ease, background 0.3s ease;
     }
-    .form-group input:focus, .form-group textarea:focus {
+
+    .form-group input:focus,
+    .form-group textarea:focus {
       outline: none;
       border-color: var(--yellow);
-      background: rgba(255,255,255,0.07);
+      background: rgba(255, 255, 255, 0.07);
     }
+
     .submit-btn {
       background: var(--yellow);
       color: var(--dark);
@@ -143,6 +237,7 @@
       font-weight: 600;
       margin-top: 1rem;
     }
+
     .submit-btn:hover {
       background: #ffdb58;
       transform: translateY(-2px);
@@ -168,44 +263,57 @@
       letter-spacing: 2px;
       text-shadow: 0 0 5px #0f0;
     }
+
     .ticker-tape {
       display: inline-block;
       padding-left: 100%;
       animation: ticker 25s linear infinite;
     }
+
     @keyframes ticker {
-      0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-100%, 0, 0); }
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      100% {
+        transform: translate3d(-100%, 0, 0);
+      }
     }
+
     /* TV & Controls Layout */
     .tv-layout-wrapper {
       display: flex;
       align-items: center;
-      justify-content: flex-start; /* Align left */
+      justify-content: flex-start;
+      /* Align left */
       gap: 1.5rem;
     }
+
     /* The Physical TV Image Wrapper */
     .tv-physical-wrapper {
       position: relative;
       flex: 1;
       width: 100%;
-      max-width: 100%; /* Let TV fill the column */
+      max-width: 660px;
+      /* Restrict max width so the Facebook plugin (max 500px) fills the screen perfectly */
       aspect-ratio: 1.1 / 1;
       background-image: url('tv-0.webp');
       background-size: 100% 100%;
       background-position: center;
       background-repeat: no-repeat;
-      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
     }
+
     .tv-controls {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
       width: 60px;
     }
+
     .tv-btn {
-      background: rgba(255,255,255,0.05);
-      border: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
       color: var(--muted);
       padding: 0.4rem 0.2rem;
       font-family: 'Oswald', sans-serif;
@@ -216,44 +324,80 @@
       transition: all 0.2s ease;
       border-radius: 6px;
     }
-    .tv-btn.active, .tv-btn:hover {
+
+    .tv-btn.active,
+    .tv-btn:hover {
       background: var(--yellow);
       color: var(--dark);
       border-color: var(--yellow);
-      box-shadow: 0 0 10px rgba(255,212,71,0.3);
+      box-shadow: 0 0 10px rgba(255, 212, 71, 0.3);
       transform: scale(1.05);
     }
+
     @keyframes occasionalFlicker {
-      0% { opacity: 1; filter: brightness(1); }
-      94% { opacity: 1; filter: brightness(1); }
-      95% { opacity: 0.7; filter: brightness(1.3); }
-      96% { opacity: 1; filter: brightness(1); }
-      97% { opacity: 0.9; filter: brightness(0.8); }
-      98% { opacity: 1; filter: brightness(1); }
-      100% { opacity: 1; filter: brightness(1); }
+      0% {
+        opacity: 1;
+        filter: brightness(1);
+      }
+
+      94% {
+        opacity: 1;
+        filter: brightness(1);
+      }
+
+      95% {
+        opacity: 0.7;
+        filter: brightness(1.3);
+      }
+
+      96% {
+        opacity: 1;
+        filter: brightness(1);
+      }
+
+      97% {
+        opacity: 0.9;
+        filter: brightness(0.8);
+      }
+
+      98% {
+        opacity: 1;
+        filter: brightness(1);
+      }
+
+      100% {
+        opacity: 1;
+        filter: brightness(1);
+      }
     }
+
     .crt-container {
       position: absolute;
       top: 14%;
-      left: 12%;
-      width: 75%;
+      left: 13.5%;
+      width: 72%;
       height: 62%;
       background: #000;
-      border-radius: 5%;
+      border-radius: 6%;
       overflow: hidden;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
       animation: occasionalFlicker 6s infinite;
     }
+
     .crt-screen {
       width: 100%;
       height: 100%;
       overflow-y: auto;
       position: relative;
     }
+
     /* Feed containers - Opacity fix for Twitter widget rendering */
     .feed-panel {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       opacity: 0;
       pointer-events: none;
       background: #fff;
@@ -261,23 +405,31 @@
       display: flex;
       justify-content: center;
     }
+
     .feed-panel.active {
       opacity: 1;
       pointer-events: auto;
       z-index: 5;
     }
+
     .feed-panel.dark-feed {
       background: #000;
     }
+
     /* The TV Scanlines & Static Overlay */
     .crt-overlay {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
       background-size: 100% 4px, 6px 100%;
       z-index: 10;
-      pointer-events: none; /* Let clicks pass through to the embeds */
+      pointer-events: none;
+      /* Let clicks pass through to the embeds */
     }
+
     .crt-static {
       position: absolute;
       inset: 0;
@@ -287,23 +439,77 @@
       mix-blend-mode: screen;
       animation: staticFlicker 0.1s infinite;
     }
+
     @keyframes staticFlicker {
-      0% { transform: translate(0,0); }
-      100% { transform: translate(2px, -2px); }
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(2px, -2px);
+      }
     }
-    
+
     @media(max-width:900px) {
-      .tv-layout-wrapper { flex-direction: column; margin-left: 0; }
-      .tv-controls { flex-direction: row; width: 100%; }
-      .tv-physical-wrapper { min-width: 100%; }
-      .nav-links { display: none; }
-      .page-header h1 { font-size: 2.5rem; }
-      .contact-container { grid-template-columns: 1fr; gap: 3rem; }
-      .broadcast-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .broadcast-item-left { flex-direction: column; align-items: flex-start; }
+      .tv-layout-wrapper {
+        flex-direction: column;
+        margin-left: 0;
+      }
+
+      .tv-controls {
+        flex-direction: row;
+        width: 100%;
+      }
+
+      .tv-physical-wrapper {
+        min-width: 100%;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #08111F;
+        border-top: 2px solid #FFD447;
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        z-index: 9999;
+      }
+      .nav-links a { font-size: 0.85rem; }
+
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .broadcast-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .broadcast-item-left {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
+
 <body>
   <nav>
     <div class="nav-inner">
@@ -332,7 +538,7 @@
   </header>
 
   <main class="contact-container">
-    
+
     <!-- Contact Left (TV Interface) -->
     <div class="contact-left">
       <!-- Live Community TV Interface -->
@@ -341,16 +547,27 @@
           <div class="crt-container">
             <div class="crt-overlay"></div>
             <div class="crt-static"></div>
-            
+
             <div class="crt-screen">
               <!-- Channel 1: TikTok -->
               <div id="feed-tk" class="feed-panel dark-feed active">
-                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@foreveryoungrecordstx" data-unique-id="foreveryoungrecordstx" data-embed-type="creator" style="max-width: 100%; min-width: 100%; height: 100%; margin: 0;"> <section> <a target="_blank" href="https://www.tiktok.com/@foreveryoungrecordstx?refer=creator_embed">@foreveryoungrecordstx</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@foreveryoungrecordstx"
+                  data-unique-id="foreveryoungrecordstx" data-embed-type="creator"
+                  style="max-width: 100%; min-width: 100%; height: 100%; margin: 0;">
+                  <section> <a target="_blank"
+                      href="https://www.tiktok.com/@foreveryoungrecordstx?refer=creator_embed">@foreveryoungrecordstx</a>
+                  </section>
+                </blockquote>
+                <script async src="https://www.tiktok.com/embed.js"></script>
               </div>
 
               <!-- Channel 2: Facebook -->
               <div id="feed-fb" class="feed-panel">
-                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FForeverYoungRecords&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId" style="border:none;overflow:hidden;width:100%;height:100%;" scrolling="yes" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <iframe
+                  src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FForeverYoungRecords&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId"
+                  style="border:none;overflow:hidden;width:100%;height:100%;" scrolling="yes" frameborder="0"
+                  allowfullscreen="true"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
               </div>
             </div>
           </div>
@@ -377,16 +594,18 @@
         </div>
         <div class="form-group">
           <label for="message">Message / Request</label>
-          <textarea id="message" name="message" rows="6" placeholder="Looking for a 1977 pressing of..." required></textarea>
+          <textarea id="message" name="message" rows="6" placeholder="Looking for a 1977 pressing of..."
+            required></textarea>
         </div>
         <button type="submit" class="submit-btn">Transmit Message</button>
       </form>
     </div>
-    
+
     <!-- Ticker Tape moved to bottom spanning both columns -->
     <div class="ticker-tape-container">
       <div class="ticker-tape">
-        *** 📡 TRANSMISSION INCOMING *** FRESH VINYL RESTOCK JUST HIT THE FLOOR *** OPEN 7 DAYS A WEEK IN GRAND PRAIRIE *** TUNE IN FOR LATEST ARRIVALS *** WE BUY COLLECTIONS ***
+        *** 📡 TRANSMISSION INCOMING *** FRESH VINYL RESTOCK JUST HIT THE FLOOR *** OPEN 7 DAYS A WEEK IN GRAND PRAIRIE
+        *** TUNE IN FOR LATEST ARRIVALS *** WE BUY COLLECTIONS ***
       </div>
     </div>
   </main>
@@ -396,11 +615,12 @@
       // Update Buttons
       document.querySelectorAll('.tv-btn').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
-      
+
       // Update Feeds
       document.querySelectorAll('.feed-panel').forEach(panel => panel.classList.remove('active'));
       document.getElementById('feed-' + channel).classList.add('active');
     }
   </script>
 </body>
+
 </html>
