@@ -246,53 +246,57 @@
       }
     });
 
-    // Mock function to simulate API call
     function loadCustomerData(barcodeData) {
-      console.log("Mock: Fetching data for barcode", barcodeData);
-      
-      // Hide empty state, show profile
-      emptyState.style.display = 'none';
-      customerProfile.style.display = 'block';
-      statusMsg.style.display = 'none';
-      addPunchBtn.classList.remove('success');
-      addPunchBtn.textContent = 'Add 1 Punch';
-      
-      // Update UI with mock data (Assume barcode is the phone number for now)
-      document.querySelector('#customer-phone span').textContent = barcodeData;
-      
-      // Generate a random initial punch count for demo purposes (0 if it's a new activation)
-      // If it's exactly 10 digits, we'll pretend it's a real scan and randomise 0-5.
-      document.getElementById('current-punches').textContent = Math.floor(Math.random() * 6);
+      fetch(`/api/punch?phone=${barcodeData}`)
+        .then(res => res.json())
+        .then(data => {
+          if(data.error) {
+            alert(data.error);
+            return;
+          }
+          emptyState.style.display = 'none';
+          customerProfile.style.display = 'block';
+          statusMsg.style.display = 'none';
+          addPunchBtn.classList.remove('success');
+          addPunchBtn.textContent = 'Add 1 Punch';
+          
+          document.querySelector('#customer-name span').textContent = data.user.name;
+          document.querySelector('#customer-phone span').textContent = data.user.phone;
+          document.getElementById('current-punches').textContent = data.user.punches;
+        })
+        .catch(err => console.error("Error fetching user:", err));
     }
 
     addPunchBtn.addEventListener('click', function() {
-      // Mock adding a punch
-      const punchSpan = document.getElementById('current-punches');
-      let current = parseInt(punchSpan.textContent);
+      const phone = document.querySelector('#customer-phone span').textContent;
       
-      if(current < 10) {
-        current += 1;
-        punchSpan.textContent = current;
-        
-        // Show success
-        this.classList.add('success');
-        this.textContent = 'Punch Added!';
-        statusMsg.style.display = 'block';
-        
-        // Reset after 3 seconds
-        setTimeout(() => {
-          this.classList.remove('success');
-          this.textContent = 'Add 1 Punch';
-          statusMsg.style.display = 'none';
-        }, 3000);
-        
-        console.log("Mock: Sending POST request to add punch and trigger SMS.");
-      } else {
-        alert("Customer already has max punches! Time for a reward.");
-      }
-      
-      // Refocus scanner just in case
-      scannerInput.focus();
+      fetch('/api/punch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.error) {
+          alert(data.error);
+        } else {
+          document.getElementById('current-punches').textContent = data.punches;
+          
+          this.classList.add('success');
+          this.textContent = 'Punch Added!';
+          statusMsg.style.display = 'block';
+          
+          setTimeout(() => {
+            this.classList.remove('success');
+            this.textContent = 'Add 1 Punch';
+            statusMsg.style.display = 'none';
+          }, 3000);
+        }
+      })
+      .catch(err => console.error("Error adding punch:", err))
+      .finally(() => {
+        scannerInput.focus();
+      });
     });
   </script>
 </body>

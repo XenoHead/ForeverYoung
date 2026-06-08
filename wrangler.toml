@@ -1,0 +1,8 @@
+name = "foreveryoung"
+pages_build_output_dir = "."
+compatibility_date = "2024-06-07"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "foreveryoung-db"
+database_id = "4977069b-0252-40ab-895f-103ff41a6d22"

@@ -296,8 +296,18 @@
         margin: 0
       });
       
-      // TODO: Here is where we will eventually POST the name/phone to Cloudflare D1 via API
-      console.log("Mock: Sending user data to backend...", { name, phone: cleanPhone });
+      // Call the Cloudflare API to register the user
+      fetch('/api/activate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone: cleanPhone })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.error) console.error("Error activating:", data.error);
+        else console.log("Activated successfully:", data);
+      })
+      .catch(err => console.error("Network error:", err));
     });
   </script>
 </body>
