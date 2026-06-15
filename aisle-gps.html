@@ -136,7 +136,7 @@
 
     .store-map {
       width: 100%;
-      height: 800px;
+      height: 1200px;
       background: rgba(0,0,0,0.5);
       border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
@@ -186,12 +186,12 @@
       cursor: pointer;
     }
     
-    .connected-aisle .aisle-block:first-child {
+    .connected-aisle .aisle-block:not(:last-child) {
       border-bottom: none;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
-    .connected-aisle .aisle-block:last-child {
+    .connected-aisle .aisle-block:not(:first-child) {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
@@ -323,7 +323,7 @@
       const container = document.getElementById('aisles-container');
       const numAisles = 10;
       
-      // Generate 10 aisles, 2 levels each
+      // Generate 10 aisles, 4 levels each
       for(let i=1; i<=numAisles; i++) {
         const aisleGroup = document.createElement('div');
         aisleGroup.className = 'aisle-group';
@@ -334,22 +334,16 @@
           aisleGroup.classList.add('split-aisle');
         }
         
-        const levelA = document.createElement('div');
-        levelA.className = 'aisle-block';
-        levelA.id = 'aisle-' + i + 'A';
-        levelA.innerText = i + 'A';
-        
-        const levelB = document.createElement('div');
-        levelB.className = 'aisle-block';
-        levelB.id = 'aisle-' + i + 'B';
-        levelB.innerText = i + 'B';
-        
-        aisleGroup.appendChild(levelA);
-        aisleGroup.appendChild(levelB);
-        
-        // Click to animate to specific block
-        levelA.addEventListener('click', () => animateToAisle(levelA));
-        levelB.addEventListener('click', () => animateToAisle(levelB));
+        const levels = ['A', 'B', 'C', 'D'];
+        levels.forEach(lvl => {
+          const block = document.createElement('div');
+          block.className = 'aisle-block';
+          block.id = 'aisle-' + i + lvl;
+          block.innerText = i + lvl;
+          
+          block.addEventListener('click', () => animateToAisle(block));
+          aisleGroup.appendChild(block);
+        });
         
         container.appendChild(aisleGroup);
       }
@@ -426,7 +420,8 @@
       
       // Simple mockup logic: pick a random block to demo the animation
       const randomAisleNum = Math.floor(Math.random() * 10) + 1;
-      const randomLevel = Math.random() > 0.5 ? 'A' : 'B';
+      const levelsArray = ['A', 'B', 'C', 'D'];
+      const randomLevel = levelsArray[Math.floor(Math.random() * levelsArray.length)];
       const target = document.getElementById('aisle-' + randomAisleNum + randomLevel);
       animateToAisle(target);
     });
